@@ -3,206 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🔴 Private Room - Waiting for You</title>
-    <meta name="theme-color" content="#000000">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="🔴 (1) Incoming Private Video Call...">
-    <meta property="og:description" content="▶ 🔘──────── 0:14 (Voice Message) Tap to accept the invitation and join the live cam now! 💦">
-    <meta property="og:image" content="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
-
+    <title>Private Profile - Secure Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #050505; overflow: hidden; user-select: none; color: #fff; margin: 0; }
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
         
-        .radar-bg { position: absolute; inset: 0; background: radial-gradient(circle at center, #0a1f11 0%, #000000 100%); z-index: 0; }
-        .scan-line { width: 100%; height: 8px; background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.5), transparent); position: absolute; top: -10%; left: 0; animation: scan 2.5s linear infinite; box-shadow: 0 0 25px rgba(16, 185, 129, 0.6); }
-        @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
-        
-        .noise { position: absolute; inset: 0; opacity: 0.04; pointer-events: none; background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E'); }
+        /* Notification Animation */
+        .toast { position: fixed; bottom: 20px; left: 20px; z-index: 50; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .toast.show { transform: translateY(0); }
 
-        .glass-panel { background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); }
-        
-        .spinner { width: 50px; height: 50px; border: 3px solid rgba(16, 185, 129, 0.1); border-top: 3px solid #10b981; border-radius: 50%; animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite; }
-        .spinner-yellow { border-color: rgba(234, 179, 8, 0.1); border-top-color: #eab308; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        .blink { animation: blinker 1s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
-
-        /* Fake typing animation */
-        .typing-dot { animation: typing 1.4s infinite ease-in-out; fill: #10b981; }
-        .typing-dot:nth-child(1) { animation-delay: 0s; }
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        /* Fake Profile Image Styles */
+        .cover-bg { background-image: url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; }
+        .blur-content { filter: blur(10px); pointer-events: none; user-select: none; }
     </style>
 </head>
-<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+<body>
 
-    <div class="radar-bg">
-        <div class="scan-line"></div>
-        <div class="noise"></div>
-    </div>
-
-    <div class="fixed top-4 left-4 right-4 z-40 flex justify-between items-start pointer-events-none">
-        <div class="flex flex-col gap-1">
-            <div id="liveBadge" class="bg-red-600/90 px-2 py-1 rounded flex items-center gap-1 font-black text-[10px] tracking-widest text-white w-max transition-colors duration-500">
-                <span class="w-1.5 h-1.5 bg-white rounded-full blink"></span> LIVE
-            </div>
+    <div id="liveToast" class="toast glass flex items-center gap-3 p-3 rounded-xl shadow-2xl border border-emerald-500/20 max-w-[250px]">
+        <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-check text-emerald-500 text-xs"></i>
         </div>
-        <div class="text-right flex flex-col items-end gap-1">
-            <div class="text-emerald-500 text-[10px] flex items-center gap-1 font-mono">
-                <i class="fas fa-lock"></i> P2P SECURE
-            </div>
+        <div class="text-[11px] leading-tight">
+            <span id="toastUser" class="font-bold text-white">User_99</span> 
+            <span class="text-zinc-400">just joined the private room.</span>
         </div>
     </div>
 
-    <div id="phase1" class="fixed inset-0 z-[100] flex items-center justify-center px-4 transition-all duration-500">
-        <div class="glass-panel w-full max-w-sm p-8 rounded-3xl text-center relative">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+    <div id="lockedScreen" class="min-h-screen flex flex-col items-center justify-center p-4">
+        
+        <div class="w-full max-w-sm bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs p-3 rounded-lg mb-6 flex items-start gap-2">
+            <i class="fas fa-info-circle mt-0.5"></i>
+            <p>System generated a temporary profile: <b id="fakeId" class="text-white">Guest_7482</b>. Status: <span class="text-red-400">Unverified</span>.</p>
+        </div>
+
+        <div class="glass w-full max-w-sm p-6 rounded-3xl text-center shadow-2xl relative overflow-hidden">
+            <div class="w-24 h-24 mx-auto mb-4 relative">
+                <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" class="w-full h-full rounded-full border-2 border-emerald-500 object-cover">
+                <div class="absolute bottom-0 right-0 w-6 h-6 bg-emerald-500 border-4 border-black rounded-full"></div>
+            </div>
             
-            <div class="relative w-20 h-20 mx-auto mb-4">
-                <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" class="w-full h-full rounded-full border-2 border-emerald-500 object-cover" alt="Avatar">
-                <div class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-black rounded-full"></div>
-            </div>
-
-            <h2 class="text-2xl font-black text-white mb-2 tracking-tight">Host is Online</h2>
-            <p class="text-sm text-zinc-400 mb-6">She is waiting for you to join the private room.</p>
+            <h2 class="text-2xl font-black mb-1">Host is Live!</h2>
+            <p class="text-zinc-400 text-sm mb-6 px-4">She is sharing daily private videos. Verify your age to unlock full screen profile and live stream.</p>
             
-            <button onclick="startHackSequence()" class="w-full py-4 bg-emerald-500 text-black font-black rounded-2xl text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
-                JOIN PRIVATE CAM <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
+            <div id="buttonContainer" class="space-y-3">
+                </div>
 
-    <div id="phase2" class="fixed inset-0 z-[150] hidden flex items-center justify-center bg-black/80 backdrop-blur-md">
-        <div class="text-center font-mono text-xs text-emerald-500 space-y-2 w-full px-6">
-            <div id="loaderSpinner" class="spinner mx-auto mb-6"></div>
-            <div id="terminal" class="text-left max-w-xs mx-auto space-y-1 h-32 overflow-hidden text-zinc-300">
-                <p id="t1" class="opacity-0">> Bypassing Firewall...</p>
-                <p id="t2" class="opacity-0">> Establishing P2P Handshake...</p>
-                <p id="t3" class="opacity-0 text-emerald-400 font-bold">> Connection Successful!</p>
-                <p id="t4" class="opacity-0 text-yellow-500 font-bold">> WARNING: Unverified Guest Profile.</p>
-                <p id="t5" class="opacity-0 text-white">> Host paused stream. Waiting for human verification...</p>
+            <div class="mt-5 p-3 rounded-xl bg-zinc-900/50 border border-white/5 text-[11px] text-zinc-400 text-left">
+                <i class="fas fa-sync-alt text-emerald-500 mr-1"></i> <b>INSTRUCTION:</b> Complete the verification, then <b>reload this page</b> to unlock the live video & daily posts.
             </div>
         </div>
     </div>
 
-    <div id="phase3" class="fixed inset-0 z-[200] hidden flex flex-col justify-center items-center px-4 bg-black/90 backdrop-blur-xl">
-        <div class="w-full max-w-sm glass-panel p-6 rounded-3xl border border-yellow-500/20 text-center relative overflow-hidden">
-            
-            <div class="absolute top-4 right-4 bg-black/50 px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/5">
-                <span class="text-[9px] text-emerald-400 font-bold tracking-wider">HOST IS TYPING</span>
-                <svg width="14" height="6" viewBox="0 0 14 6" xmlns="http://www.w3.org/2000/svg">
-                    <circle class="typing-dot" cx="2" cy="3" r="2"/>
-                    <circle class="typing-dot" cx="7" cy="3" r="2"/>
-                    <circle class="typing-dot" cx="12" cy="3" r="2"/>
-                </svg>
-            </div>
-
-            <div class="w-16 h-16 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-yellow-500/30 mt-4">
-                <i class="fas fa-hand-paper text-2xl text-yellow-500"></i>
-            </div>
-            
-            <h2 class="text-xl font-black text-white mb-2">Stream Paused by Host</h2>
-            <p class="text-sm text-zinc-300 mb-6 leading-relaxed">
-                The host noticed your connection but locked the room to prevent bots. 
-                <br><br>
-                Please grab a <strong class="text-emerald-400">Free VIP ID</strong> or <strong class="text-emerald-400">Guest Pass</strong> to prove you are 18+. The stream will auto-resume!
-            </p>
-            
-            <div class="space-y-3">
-                <button onclick="goToLink1()" class="relative w-full py-3.5 bg-emerald-500 text-black font-black text-sm rounded-xl uppercase tracking-wider shadow-[0_0_20px_rgba(16,185,129,0.3)] flex justify-center items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all overflow-hidden">
-                    <i class="fas fa-id-badge"></i> Create Free VIP ID (Fast)
+    <div id="unlockedScreen" class="hidden min-h-screen pb-20">
+        <div class="h-48 cover-bg relative">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+        </div>
+        
+        <div class="max-w-lg mx-auto px-4 -mt-16 relative z-10">
+            <div class="flex justify-between items-end mb-4">
+                <div class="w-28 h-28 rounded-full border-4 border-black bg-zinc-800 overflow-hidden shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover">
+                </div>
+                <button class="bg-emerald-500 text-black font-black px-6 py-2 rounded-full text-sm animate-pulse">
+                    <i class="fas fa-video mr-1"></i> WATCH LIVE
                 </button>
+            </div>
+            
+            <h1 class="text-2xl font-black flex items-center gap-2">Private Daily <i class="fas fa-check-circle text-blue-500 text-lg"></i></h1>
+            <p class="text-emerald-400 text-sm font-bold mb-4">@real_host_vip • Online Now</p>
+            
+            <p class="text-zinc-300 text-sm mb-6">Welcome to my private world! 💋 Verified members only. Here I share my daily life, exclusive videos, and chat live.</p>
+            
+            <div class="space-y-4">
+                <h3 class="font-bold border-b border-zinc-800 pb-2">Recent Exclusive Posts</h3>
                 
-                <div class="text-zinc-500 text-[10px] font-bold py-1">OR</div>
-
-                <button onclick="goToLink2()" class="w-full py-3 bg-zinc-800 border border-zinc-700 text-white font-bold text-sm rounded-xl flex justify-center items-center gap-2 hover:bg-zinc-700 transition-all">
-                    <i class="fas fa-user-secret"></i> Anonymous Guest Entry
-                </button>
+                <div class="glass p-3 rounded-2xl">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-zinc-700"></div>
+                        <div>
+                            <p class="text-xs font-bold">Private Daily</p>
+                            <p class="text-[10px] text-zinc-500">2 hours ago</p>
+                        </div>
+                    </div>
+                    <div class="h-48 bg-zinc-800 rounded-xl mb-2 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-play-circle text-4xl text-white/50 z-10"></i>
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=400&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                    </div>
+                    <p class="text-sm">Morning routine... don't share this! 🤫</p>
+                </div>
             </div>
-            
-            <p class="text-[9px] text-zinc-500 mt-5 font-mono">100% PRIVATE • CAMERA UNLOCKS INSTANTLY</p>
         </div>
     </div>
 
     <script>
-        const LINK_1_AFFIZER = "https://t.taffizerq.com/719iel"; 
-        const LINK_2_TRAFFEE = "https://bedjfha.litracksm.com/s/62b4abc4a39b9?preland=Casual"; 
+        const AFFIZER_VIP = "https://t.taffizerq.com/719iel";
+        const TRAFFEE_GUEST = "https://bedjfha.litracksm.com/s/62b4abc4a39b9?preland=Casual";
 
-        let actionTriggered = false;
+        // Generate Random Fake ID
+        const fakeIdNum = Math.floor(1000 + Math.random() * 9000);
+        document.getElementById('fakeId').innerText = "Guest_" + fakeIdNum;
 
-        // Anti-Bounce Trap
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () {
-            if(!actionTriggered) {
-                window.location.replace(LINK_2_TRAFFEE);
+        // --- THE BRAIN: Checking User State ---
+        let userState = localStorage.getItem('profileState') || 'NEW'; 
+        // States: NEW -> CLICKED_VIP -> UNLOCKED
+
+        if(userState === 'UNLOCKED') {
+            // IF THEY ALREADY VERIFIED (Or tricked the system)
+            document.getElementById('lockedScreen').style.display = 'none';
+            document.getElementById('unlockedScreen').classList.remove('hidden');
+        } else {
+            // Render Buttons Based on History
+            const btnContainer = document.getElementById('buttonContainer');
+            
+            if(userState === 'NEW') {
+                // First time visit
+                btnContainer.innerHTML = `
+                    <button onclick="handleRoute('VIP')" class="w-full py-4 bg-emerald-500 text-black font-black rounded-xl hover:scale-[1.02] transition shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                        <i class="fas fa-crown"></i> VERIFY VIP ACCESS (FAST)
+                    </button>
+                    <button onclick="handleRoute('GUEST')" class="w-full py-3 bg-zinc-800 text-zinc-300 font-bold rounded-xl text-sm border border-zinc-700 hover:bg-zinc-700 transition">
+                        USE FREE GUEST PASS
+                    </button>
+                `;
+            } else if (userState === 'CLICKED_VIP') {
+                // They clicked VIP but came back (Failed/Bounced) - PUSH TO GUEST!
+                btnContainer.innerHTML = `
+                    <div class="text-red-400 text-xs font-bold mb-2">⚠️ VIP Verification Incomplete!</div>
+                    <button onclick="handleRoute('GUEST_RETRY')" class="w-full py-4 bg-blue-500 text-white font-black rounded-xl hover:scale-[1.02] transition shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                        <i class="fas fa-user-secret"></i> TRY ALTERNATE GUEST PASS
+                    </button>
+                    <button onclick="handleRoute('VIP')" class="w-full py-3 bg-zinc-800 text-zinc-400 font-bold rounded-xl text-sm border border-zinc-700 mt-3">
+                        Retry VIP Access
+                    </button>
+                `;
             }
-        };
+        }
 
-        function startHackSequence() {
-            if(navigator.vibrate) navigator.vibrate([50, 50]);
+        // --- ROUTING LOGIC ---
+        function handleRoute(action) {
+            if(action === 'VIP') {
+                localStorage.setItem('profileState', 'CLICKED_VIP'); // Remember they tried VIP
+                setTimeout(() => window.location.href = AFFIZER_VIP, 500);
+            } 
+            else if (action === 'GUEST' || action === 'GUEST_RETRY') {
+                localStorage.setItem('profileState', 'UNLOCKED'); // If they try guest, next time they reload it unocks!
+                setTimeout(() => window.location.href = TRAFFEE_GUEST, 500);
+            }
             
-            document.getElementById('phase1').style.opacity = '0';
-            setTimeout(() => { 
-                document.getElementById('phase1').classList.add('hidden'); 
-                document.getElementById('phase2').classList.remove('hidden');
-            }, 300);
+            // The instruction alert before they leave
+            alert("Verification started! After completing it, come back and RELOAD this page to open the full profile.");
+        }
 
-            setTimeout(() => { document.getElementById('t1').classList.remove('opacity-0'); }, 800);
-            setTimeout(() => { document.getElementById('t2').classList.remove('opacity-0'); }, 1600);
+        // --- FAKE LIVE NOTIFICATIONS ---
+        const names = ["David", "Mike_99", "Alex", "Guest_402", "Chris", "John_V"];
+        const actions = ["verified VIP access.", "joined the live stream.", "unlocked the private gallery."];
+        
+        function showNotification() {
+            if(userState === 'UNLOCKED') return; // Don't show on unlocked screen
             
-            // Connection Success!
-            setTimeout(() => { 
-                document.getElementById('t3').classList.remove('opacity-0'); 
-                if(navigator.vibrate) navigator.vibrate(100); 
-            }, 2400);
+            const toast = document.getElementById('liveToast');
+            document.getElementById('toastUser').innerText = names[Math.floor(Math.random() * names.length)];
+            toast.querySelector('.text-zinc-400').innerText = actions[Math.floor(Math.random() * actions.length)];
             
-            // The Pause Warning
-            setTimeout(() => { 
-                document.getElementById('t4').classList.remove('opacity-0'); 
-                document.getElementById('loaderSpinner').classList.add('spinner-yellow');
-                document.getElementById('liveBadge').classList.replace('bg-red-600/90', 'bg-yellow-500/90');
-                document.getElementById('liveBadge').innerHTML = '<i class="fas fa-pause text-[8px]"></i> PAUSED';
-            }, 3500);
-
-            setTimeout(() => { document.getElementById('t5').classList.remove('opacity-0'); }, 4200);
-
-            // Show Phase 3
-            setTimeout(() => {
-                document.getElementById('phase2').classList.add('hidden');
-                document.getElementById('phase3').classList.remove('hidden');
-                if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
-            }, 5500);
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
         }
+        
+        // Show first notification after 2 seconds, then every 8 seconds
+        setTimeout(() => {
+            showNotification();
+            setInterval(showNotification, 8000);
+        }, 2000);
 
-        function goToLink1() {
-            if(actionTriggered) return;
-            actionTriggered = true;
-            showFinalRoutingText("Unlocking Room...");
-            setTimeout(() => { window.location.replace(LINK_1_AFFIZER); }, 800);
-        }
-
-        function goToLink2() {
-            if(actionTriggered) return;
-            actionTriggered = true;
-            showFinalRoutingText("Generating Guest Pass...");
-            setTimeout(() => { window.location.replace(LINK_2_TRAFFEE); }, 800);
-        }
-
-        function showFinalRoutingText(text) {
-            document.body.innerHTML += `
-                <div class="fixed inset-0 z-[999999] bg-black flex flex-col items-center justify-center">
-                    <div class="spinner mb-4 border-emerald-500 border-t-white"></div>
-                    <h2 class="text-emerald-500 font-mono text-xs tracking-widest uppercase">${text}</h2>
-                </div>
-            `;
-        }
     </script>
 </body>
 </html>
