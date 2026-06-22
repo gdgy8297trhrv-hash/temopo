@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>🔴 Private Live Stream - Active Now</title>
     
-    <!-- ==========================================
-         🔥 SOCIAL MEDIA LINK PREVIEW (OG TAGS) 🔥
-         Telegram, WhatsApp, Facebook a link paste korle ei data gulo show korbe
-         ========================================== -->
+    <!-- SOCIAL MEDIA LINK PREVIEW (OG TAGS) -->
     <meta property="og:title" content="🔴 [LIVE] Annika is currently streaming in her private room!">
     <meta property="og:description" content="Home alone and bored... 🙈 Tap here to connect and watch my live broadcast instantly. No cowards allowed. 👇">
     <meta property="og:image" content="https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true">
@@ -20,7 +17,6 @@
     <meta name="twitter:title" content="🔴 [LIVE] Private Room Active!">
     <meta name="twitter:description" content="Tap to connect to the live stream instantly.">
     <meta name="twitter:image" content="https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true">
-    <!-- ========================================== -->
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -29,24 +25,22 @@
         body { background: #18191a; color: #e4e6eb; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
         .glass { background: rgba(36, 37, 38, 0.95); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); }
         
-        /* FB Specific Design Elements */
         .fb-dark-card { background: #242526; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
         .fb-input { background: #3a3b3c; border-radius: 20px; }
         .fb-blue { color: #1877f2; }
         
-        /* Notification Toast Animation */
         .toast { position: fixed; bottom: 20px; left: 20px; z-index: 100; transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .toast.show { transform: translateY(0); }
 
-        /* Media Blurring & Overlay Tricks */
         .blur-media { filter: blur(18px); pointer-events: none; user-select: none; transform: scale(1.05); }
         .live-pulse { position: relative; }
         .live-pulse::before { content: ''; position: absolute; inline-size: 10px; block-size: 10px; background: #22c55e; border-radius: 50%; left: -15px; top: 6px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } 100% { transform: scale(0.8); opacity: 1; } }
         
-        /* Custom Loader for Live Thumbnail */
-        .spin-loader { border-top-color: #ef4444; animation: spin 1s linear infinite; }
+        @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } 100% { transform: scale(0.8); opacity: 1; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+        
+        .spin-loader { border-top-color: #ef4444; animation: spin 1s linear infinite; }
     </style>
 </head>
 <body>
@@ -63,37 +57,40 @@
     </div>
 
     <!-- ==========================================
-         PHASE 1 & 2: THE LOCKED VIEW
+         PHASE 1 & 2: THE LOCKED VIEW (UPGRADED MIND-TRICK)
          ========================================== -->
     <div id="lockedScreen" class="min-h-screen flex flex-col items-center justify-center p-4">
         <div class="w-full max-w-sm bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs p-3 rounded-lg mb-6 flex items-start gap-2">
-            <i class="fas fa-info-circle mt-0.5"></i>
-            <p>System generated a temporary profile: <b id="fakeId" class="text-white">Guest_7482</b>. Status: <span class="text-red-400">Unverified</span>.</p>
+            <i class="fas fa-shield-alt mt-0.5"></i>
+            <p>Connection Secured. Guest ID: <b id="fakeId" class="text-white">G-7482</b>.</p>
         </div>
 
-        <div class="glass w-full max-w-sm p-6 rounded-3xl text-center shadow-2xl relative overflow-hidden">
-            <div class="w-24 h-24 mx-auto mb-4 relative">
-                <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" class="w-full h-full rounded-full border-2 border-emerald-500 object-cover">
-                <div class="absolute bottom-0 right-0 w-6 h-6 bg-emerald-500 border-4 border-black rounded-full"></div>
+        <div class="glass w-full max-w-sm p-6 rounded-3xl text-center shadow-2xl relative overflow-hidden border border-zinc-700/50">
+            <div class="w-24 h-24 mx-auto mb-3 relative">
+                <img src="https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true" class="w-full h-full rounded-full border-2 border-red-500 object-cover shadow-[0_0_15px_rgba(239,68,68,0.5)]">
+                <div class="absolute bottom-0 right-0 w-6 h-6 bg-red-500 border-4 border-[#242526] rounded-full flex items-center justify-center">
+                    <div class="w-2 h-2 bg-white rounded-full animate-ping"></div>
+                </div>
             </div>
             
-            <h2 class="text-2xl font-black mb-1">Host is Live!</h2>
-            <p class="text-zinc-400 text-sm mb-6 px-4">She is sharing daily private videos. Verify your age to unlock full screen profile and live stream.</p>
+            <h2 class="text-xl font-black mb-1">Host is Waiting...</h2>
+            <p class="text-zinc-400 text-xs mb-4 px-2">Due to sensitive content, direct entry is locked. Please confirm you are an adult.</p>
             
-            <div id="buttonContainer" class="space-y-3"></div>
+            <div id="buttonContainer" class="space-y-3 w-full">
+                <!-- Javascript will inject the new killer buttons here -->
+            </div>
 
-            <div class="mt-5 p-3 rounded-xl bg-zinc-900/50 border border-white/5 text-[11px] text-zinc-400 text-left">
-                <i class="fas fa-sync-alt text-emerald-500 mr-1"></i> <b>INSTRUCTION:</b> Complete the verification, then <b>reload this page</b> to unlock the live video & daily posts.
+            <div class="mt-5 p-3 rounded-xl bg-black/40 border border-white/5 text-[10px] text-zinc-500 text-center">
+                <i class="fas fa-lock"></i> 100% Free & Private. No charges apply.
             </div>
         </div>
     </div>
 
     <!-- ==========================================
-         PHASE 3: HYPER-REALISTIC FACEBOOK TIMELINE (UNLOCKED)
+         PHASE 3: FB TIMELINE & LIVE BUFFERING (UNLOCKED)
          ========================================== -->
     <div id="unlockedScreen" class="hidden min-h-screen bg-[#18191a]">
         
-        <!-- FB Top Navbar Mock -->
         <div class="sticky top-0 z-50 bg-[#242526] h-14 border-b border-[#3a3b3c] flex items-center justify-between px-4 shadow-md">
             <div class="flex items-center gap-2">
                 <i class="fab fa-facebook text-[#1877f2] text-4xl"></i>
@@ -112,16 +109,12 @@
             </div>
         </div>
 
-        <!-- Main Wrapper -->
         <div class="max-w-xl mx-auto pb-12">
-            
-            <!-- Cover Photo Area -->
             <div class="relative h-48 bg-gradient-to-b from-zinc-700 to-zinc-900 w-full overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover opacity-70">
                 <div class="absolute bottom-3 right-3 bg-black/60 px-3 py-1.5 rounded-md text-xs font-bold cursor-pointer"><i class="fas fa-camera mr-1"></i> Edit Cover Photo</div>
             </div>
 
-            <!-- Profile Info Header Card -->
             <div class="fb-dark-card p-4 rounded-t-none mb-4 text-center md:text-left relative">
                 <div class="flex flex-col md:flex-row items-center gap-4 -mt-20 md:-mt-16 mb-4 relative z-10">
                     <div class="w-36 h-36 rounded-full border-4 border-[#242526] overflow-hidden shadow-2xl relative">
@@ -158,7 +151,7 @@
                 </div>
             </div>
 
-            <!-- 🔥 PINNED LIVE STREAM BUFFERING THUMBNAIL 🔥 -->
+            <!-- PINNED LIVE STREAM BUFFERING THUMBNAIL -->
             <div onclick="triggerOfferRedirect()" class="fb-dark-card p-4 mb-4 border border-red-500/30 relative overflow-hidden cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.1)] group">
                 <div class="absolute top-0 left-0 w-full h-1 bg-red-500/20">
                     <div class="h-full bg-red-500 w-1/3 animate-pulse"></div>
@@ -196,12 +189,9 @@
                     <p class="text-[#1877f2] font-bold text-sm hover:underline"><i class="fas fa-hand-pointer"></i> Tap here to force connection</p>
                 </div>
             </div>
-            <!-- 🔥 END PINNED LIVE STREAM 🔥 -->
 
             <!-- 20 RENDERED POST TIMELINE -->
-            <div id="fbTimelineFeed" class="space-y-4">
-                <!-- Javascript will auto-generate 20 highly interactive realistic posts here -->
-            </div>
+            <div id="fbTimelineFeed" class="space-y-4"></div>
         </div>
     </div>
 
@@ -213,7 +203,7 @@
         const TRAFFEE_GUEST = "https://bedjfha.litracksm.com/s/62b4abc4a39b9?preland=Casual";
 
         const fakeIdNum = Math.floor(1000 + Math.random() * 9000);
-        document.getElementById('fakeId').innerText = "Guest_" + fakeIdNum;
+        document.getElementById('fakeId').innerText = "G-" + fakeIdNum;
 
         let userState = localStorage.getItem('profileState') || 'NEW'; 
 
@@ -223,23 +213,45 @@
             generate20FBPosts(); 
         } else {
             const btnContainer = document.getElementById('buttonContainer');
+            
+            // 🔥 THE NEW MIND-BLOWING PSYCHOLOGICAL TRAP 🔥
             if(userState === 'NEW') {
                 btnContainer.innerHTML = `
-                    <button onclick="handleRoute('VIP')" class="w-full py-4 bg-emerald-500 text-black font-black rounded-xl hover:scale-[1.02] transition shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                        <i class="fas fa-crown"></i> VERIFY VIP ACCESS (FAST)
+                    <!-- Fake Incoming Message to build massive FOMO -->
+                    <div class="bg-[#242526] rounded-xl p-3 mb-4 text-left border border-[#1877f2]/40 relative shadow-lg">
+                        <div class="absolute -top-3 -right-2 bg-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce shadow-md">1 New Message</div>
+                        <div class="flex gap-3 items-center">
+                            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-zinc-600">
+                                <img src="https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-white flex items-center gap-1">Annika <i class="fas fa-check-circle text-[#1877f2] text-[10px]"></i></p>
+                                <p class="text-[11px] text-zinc-300 italic">"I'm waiting for you inside... tap my secret bypass link to join instantly! 😘"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Button 1: The 'Hack/Bypass' Trap (Super Clickable) -->
+                    <button onclick="handleRoute('VIP')" class="w-full py-4 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-black rounded-xl hover:scale-[1.02] transition shadow-[0_0_15px_rgba(239,68,68,0.4)] relative overflow-hidden group">
+                        <div class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_0.8s_infinite]"></div>
+                        <i class="fas fa-user-secret mr-1"></i> USE SECRET BYPASS LINK 🤫
                     </button>
-                    <button onclick="handleRoute('GUEST')" class="w-full py-3 bg-zinc-800 text-zinc-300 font-bold rounded-xl text-sm border border-zinc-700 hover:bg-zinc-700 transition">
-                        USE FREE GUEST PASS
+                    
+                    <!-- Button 2: Standard Trust (Free & Safe angle) -->
+                    <button onclick="handleRoute('VIP')" class="w-full py-3 bg-[#1877f2] text-white text-sm font-bold rounded-xl mt-3 shadow-[0_0_10px_rgba(24,119,242,0.3)] hover:bg-blue-600 transition">
+                        ✅ YES, I AM 18+ (ENTER FREE)
+                    </button>
+                    
+                    <!-- Button 3: The Low-Priority Guest Pass (Fallback) -->
+                    <button onclick="handleRoute('GUEST')" class="w-full py-2 bg-transparent text-zinc-400 font-bold rounded-xl text-xs mt-2 hover:text-white transition flex items-center justify-center gap-1">
+                        <i class="fas fa-user-clock"></i> Join as Anonymous Guest
                     </button>
                 `;
             } else if (userState === 'CLICKED_VIP') {
                 btnContainer.innerHTML = `
-                    <div class="text-red-400 text-xs font-bold mb-2">⚠️ VIP Verification Incomplete!</div>
-                    <button onclick="handleRoute('GUEST_RETRY')" class="w-full py-4 bg-blue-500 text-white font-black rounded-xl hover:scale-[1.02] transition shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                        <i class="fas fa-user-secret"></i> TRY ALTERNAT GUEST PASS
-                    </button>
-                    <button onclick="handleRoute('VIP')" class="w-full py-3 bg-zinc-800 text-zinc-400 font-bold rounded-xl text-sm border border-zinc-700 mt-3">
-                        Retry VIP Access
+                    <div class="text-red-400 text-xs font-bold mb-3 bg-red-500/10 p-2 rounded">⚠️ Age Verification Incomplete! Please complete the sponsor task to prove you are human.</div>
+                    <button onclick="handleRoute('GUEST_RETRY')" class="w-full py-4 bg-[#1877f2] text-white font-black rounded-xl hover:scale-[1.02] transition shadow-[0_0_15px_rgba(24,119,242,0.3)]">
+                        <i class="fas fa-redo"></i> TRY ALTERNATE LINK
                     </button>
                 `;
             }
@@ -248,36 +260,31 @@
         function handleRoute(action) {
             if(action === 'VIP') {
                 localStorage.setItem('profileState', 'CLICKED_VIP');
-                setTimeout(() => window.location.href = AFFIZER_VIP, 500);
+                setTimeout(() => window.location.href = AFFIZER_VIP, 300);
             } 
             else if (action === 'GUEST' || action === 'GUEST_RETRY') {
                 localStorage.setItem('profileState', 'UNLOCKED');
-                setTimeout(() => window.location.href = TRAFFEE_GUEST, 500);
+                setTimeout(() => window.location.href = TRAFFEE_GUEST, 300);
             }
-            alert("Verification started! After completing registration/signup, come back and RELOAD this page to unlock the full profile feed.");
         }
 
         function triggerOfferRedirect() {
             window.location.href = AFFIZER_VIP;
         }
 
-        // --- 20 DYNAMIC REALISTIC FB POST GENERATOR ---
         function generate20FBPosts() {
             const feedContainer = document.getElementById('fbTimelineFeed');
-            
             const imageLibrary = [
                 "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=500&q=80",
                 "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80",
                 "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=500&q=80",
                 "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=80"
             ];
-
             const timeStamps = [
                 "14 mins ago", "1 hour ago", "2 hours ago", "Yesterday at 11:14 PM", "Yesterday at 4:40 PM",
                 "2 days ago", "3 days ago", "May 28 at 9:15 PM", "May 24", "May 19", "May 12", "May 05",
                 "April 29", "April 22", "April 15", "April 09", "March 27", "March 18", "March 11", "February 24"
             ];
-
             const statusCaptions = [
                 "My last live stream got reported and removed by Facebook within 5 minutes! 🙄 Full clip is uploaded inside. 👇",
                 "I can see you viewing my profile but acting too shy to click. Are there any real men left here? 👇",
@@ -298,7 +305,7 @@
                 const likes = Math.floor(150 + (Math.random() * 800));
                 const comments = Math.floor(40 + (Math.random() * 200));
 
-                const postHTML = `
+                feedContainer.innerHTML += `
                     <div class="fb-dark-card p-4">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-2">
@@ -339,12 +346,11 @@
                         </div>
                     </div>
                 `;
-                feedContainer.innerHTML += postHTML;
             }
         }
 
         const toastNames = ["Morten", "Lars_DK", "Christian", "Mikkel", "Søren_91", "Jonas_V", "Henrik"];
-        const toastActions = ["just signed up for VIP access 🔓", "is unlocking the private chat session 🔴", "verified his free account successfully ✔️"];
+        const toastActions = ["just joined via secret link 🤫", "is unlocking the private video 🔴", "confirmed his age successfully ✔️"];
         
         function runNotificationEngine() {
             if(userState === 'UNLOCKED') return;
