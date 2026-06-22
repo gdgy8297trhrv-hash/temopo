@@ -25,6 +25,10 @@
         .live-pulse { position: relative; }
         .live-pulse::before { content: ''; position: absolute; inline-size: 10px; block-size: 10px; background: #22c55e; border-radius: 50%; left: -15px; top: 6px; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } 100% { transform: scale(0.8); opacity: 1; } }
+        
+        /* Custom Loader for Live Thumbnail */
+        .spin-loader { border-top-color: #ef4444; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -105,7 +109,7 @@
 
                 <div class="border-t border-[#3a3b3c] pt-4 text-center">
                     <p class="text-zinc-200 text-sm italic font-semibold max-w-md mx-auto">
-                        "How dare any real men from Denmark talk to me live now. Like having sex. I want to see courage today. If you are a coward then you don't need to come to my link... 👇"
+                        "Home alone and completely bored out of my mind... 🙈 Decided to go live and do something a little crazy tonight. Don't make me wait all by myself. Tap below to connect to my private room instantly! 👇"
                     </p>
                 </div>
 
@@ -125,6 +129,43 @@
                 </div>
             </div>
 
+            <div onclick="triggerOfferRedirect()" class="fb-dark-card p-4 mb-4 border border-red-500/30 relative overflow-hidden cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.1)] group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-red-500/20">
+                    <div class="h-full bg-red-500 w-1/3 animate-pulse"></div>
+                </div>
+                
+                <div class="flex items-center justify-between mb-3">
+                    <p class="text-red-500 font-bold text-sm flex items-center gap-2">
+                        <i class="fas fa-satellite-dish animate-pulse"></i> LIVE BROADCAST CONNECTING...
+                    </p>
+                    <i class="fas fa-thumbtack text-zinc-500 text-xs"></i>
+                </div>
+                
+                <div class="relative w-full h-56 bg-black rounded-lg overflow-hidden flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover blur-md opacity-50 group-hover:opacity-40 transition">
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-16 h-16 border-4 border-zinc-600 rounded-full spin-loader mb-3 shadow-[0_0_20px_rgba(239,68,68,0.6)]"></div>
+                        <div class="bg-black/80 px-4 py-1.5 rounded-full border border-red-500/50 flex items-center gap-2">
+                            <div class="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
+                            <span class="text-white text-xs font-bold tracking-widest">BUFFERING PRIVATE ROOM...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-3 bg-gradient-to-t from-black to-transparent flex justify-between items-end">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-volume-mute text-white text-sm"></i>
+                            <span class="text-white text-xs font-bold">00:00 / LIVE</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-white text-xs font-bold bg-black/50 px-2 py-1 rounded">
+                            <i class="fas fa-eye text-red-500"></i> 4,892
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <p class="text-[#1877f2] font-bold text-sm hover:underline"><i class="fas fa-hand-pointer"></i> Tap here to force connection</p>
+                </div>
+            </div>
             <div id="fbTimelineFeed" class="space-y-4">
                 </div>
         </div>
@@ -134,17 +175,15 @@
         const AFFIZER_VIP = "https://t.taffizerq.com/719iel";
         const TRAFFEE_GUEST = "https://bedjfha.litracksm.com/s/62b4abc4a39b9?preland=Casual";
 
-        // Random Temp ID Generator
         const fakeIdNum = Math.floor(1000 + Math.random() * 9000);
         document.getElementById('fakeId').innerText = "Guest_" + fakeIdNum;
 
-        // State Core Engine
         let userState = localStorage.getItem('profileState') || 'NEW'; 
 
         if(userState === 'UNLOCKED') {
             document.getElementById('lockedScreen').style.display = 'none';
             document.getElementById('unlockedScreen').classList.remove('hidden');
-            generate20FBPosts(); // Populates realistic posts natively
+            generate20FBPosts(); 
         } else {
             const btnContainer = document.getElementById('buttonContainer');
             if(userState === 'NEW') {
@@ -182,7 +221,6 @@
         }
 
         function triggerOfferRedirect() {
-            // Secret conversion traps mapped across all active UI interactions
             window.location.href = AFFIZER_VIP;
         }
 
@@ -190,7 +228,6 @@
         function generate20FBPosts() {
             const feedContainer = document.getElementById('fbTimelineFeed');
             
-            // Varied sample image backdrops to simulate a deep content timeline
             const imageLibrary = [
                 "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=500&q=80",
                 "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80",
@@ -199,21 +236,21 @@
             ];
 
             const timeStamps = [
-                "Just now 🔴 (Live Session)", "24 mins ago", "2 hours ago", "Yesterday at 11:14 PM", "Yesterday at 4:40 PM",
+                "14 mins ago", "1 hour ago", "2 hours ago", "Yesterday at 11:14 PM", "Yesterday at 4:40 PM",
                 "2 days ago", "3 days ago", "May 28 at 9:15 PM", "May 24", "May 19", "May 12", "May 05",
                 "April 29", "April 22", "April 15", "April 09", "March 27", "March 18", "March 11", "February 24"
             ];
 
             const statusCaptions = [
-                "Streaming right now inside my room! Denmark boys where is your courage? Link above 🤫💦",
-                "Behind the scenes from my photoshoot this morning. Full unblurred clip in bio...",
+                "My last live stream got reported and removed by Facebook within 5 minutes! 🙄 Full clip is uploaded inside. 👇",
+                "I can see you viewing my profile but acting too shy to click. Are there any real men left here? 👇",
+                "Feeling lonely, so I’m choosing exactly 5 lucky guys from the stream for a private 1-on-1 video call. 👇",
+                "Streaming right now inside my room! Denmark boys, where is your courage? Link above 🤫💦",
+                "Behind the scenes from my photoshoot this morning. Full unblurred clip available now...",
                 "Waiting for that one brave man to text me privately tonight. No cowards allowed.",
                 "New video update uploaded to my secret drive. Check out the active links!",
-                "Feeling lonely today... Who wants to jump on a quick 1-on-1 private video chat?",
                 "Can you handle the truth? Exclusive full length feed available right now.",
                 "Just shared something very personal on my dashboard. Go take a peek!",
-                "My favorite content this week is finally out. Click any post to check verification status.",
-                "Late night update. Make sure your free guest pass is fully active.",
                 "This routine got deleted from public platforms immediately. Saved it here for you."
             ];
 
@@ -269,7 +306,6 @@
             }
         }
 
-        // --- LIVE ENGAGEMENT NOTIFICATION LOOPER ---
         const toastNames = ["Morten", "Lars_DK", "Christian", "Mikkel", "Søren_91", "Jonas_V", "Henrik"];
         const toastActions = ["just signed up for VIP access 🔓", "is unlocking the private chat session 🔴", "verified his free account successfully ✔️"];
         
