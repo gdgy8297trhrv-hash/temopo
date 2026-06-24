@@ -1,145 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>🔴 Live Private Cams - USA & EU</title>
+    <title>🔴 LIVE: Private Cams i Danmark</title>
     
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="🔴 [LIVE] Waiting for you in private room...">
-    <meta property="og:description" content="Loading secure video connection... Click here to join the live broadcast now. 🔞">
-    <meta property="og:image" content="https://github.com/gdjg536ydiv-bot/affizerp/blob/main/C2CDnINUsAArk4M.jpg?raw=true">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="🔴 Private Live Room">
-    <meta name="twitter:description" content="Loading video... Tap to play.">
-    <meta name="twitter:image" content="https://github.com/gdjg536ydiv-bot/affizerp/blob/main/C2CDnINUsAArk4M.jpg?raw=true">
-
     <style>
         /* =========================================
-           GLOBAL STYLES & DARK THEME
+           PREMIUM DARK THEME & TRICKS
            ========================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0f0f11; color: #fff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 8px; }
+        body { background-color: #0b0b0d; color: #fff; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #ff2a5f; border-radius: 10px; }
         
         /* HEADER */
-        header { background: #1a1a1d; padding: 15px 20px; text-align: center; border-bottom: 2px solid #ff2a5f; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(255, 42, 95, 0.2); }
-        header h1 { font-size: 24px; color: #ff2a5f; text-transform: uppercase; letter-spacing: 2px; }
-        header span { font-size: 12px; color: #aaa; }
+        header { background: #131316; padding: 18px 20px; text-align: center; border-bottom: 2px solid #ff2a5f; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(255, 42, 95, 0.15); }
+        header h1 { font-size: 22px; color: #ff2a5f; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        header span { font-size: 11px; color: #8a8a93; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; display: block; }
 
-        /* =========================================
-           MAIN GRID (HOME PAGE)
-           ========================================= */
-        .container { max-width: 1200px; margin: 20px auto; padding: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        /* MAIN GRID */
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; }
         
-        .profile-card { background: #1a1a1d; border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; border: 1px solid #333; }
-        .profile-card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(255, 42, 95, 0.4); border-color: #ff2a5f; }
-        .card-img { width: 100%; height: 220px; object-fit: cover; }
+        .profile-card { background: #131316; border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.3s; position: relative; border: 1px solid #222227; }
+        .profile-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(255, 42, 95, 0.3); border-color: #ff2a5f; }
+        .card-img-wrapper { width: 100%; height: 230px; overflow: hidden; position: relative; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .profile-card:hover .card-img { transform: scale(1.05); }
         
-        .online-dot { position: absolute; top: 10px; left: 10px; background: #2ecc71; width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 8px #2ecc71; animation: pulse 2s infinite; }
-        .live-badge-small { position: absolute; top: 10px; right: 10px; background: red; color: white; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px; animation: blink 1s infinite; }
+        .online-dot { position: absolute; top: 12px; left: 12px; background: #2ecc71; width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 12px #2ecc71; animation: pulse 1.5s infinite; z-index: 5; }
+        .live-badge-small { position: absolute; top: 12px; right: 12px; background: #ff2a5f; color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 20px; animation: blink 1s infinite; z-index: 5; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(255, 42, 95, 0.5); }
+        .distance-badge { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: #fff; font-size: 10px; padding: 3px 6px; border-radius: 5px; backdrop-filter: blur(3px); z-index: 5; border: 1px solid #333; }
         
-        .card-info { padding: 12px; text-align: center; }
-        .card-name { font-size: 16px; font-weight: bold; color: #fff; }
-        .card-location { font-size: 12px; color: #ff2a5f; margin-top: 5px; }
+        .card-info { padding: 12px; background: #131316; text-align: center; }
+        .card-name { font-size: 16px; font-weight: 700; color: #ffffff; }
+        .card-location { font-size: 12px; color: #a1a1aa; margin-top: 4px; }
 
-        /* =========================================
-           PROFILE MODAL (FACEBOOK STYLE)
-           ========================================= */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto; backdrop-filter: blur(5px); }
-        .modal-content { background: #121212; max-width: 600px; margin: 0 auto; min-height: 100vh; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        /* MODAL SYSTEM */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 6, 0.96); z-index: 1000; overflow-y: auto; backdrop-filter: blur(8px); }
+        .modal-content { background: #0f0f12; max-width: 550px; margin: 0 auto; min-height: 100vh; position: relative; border-left: 1px solid #222227; border-right: 1px solid #222227; padding-bottom: 40px; }
         
-        .close-btn { position: fixed; top: 15px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; font-size: 24px; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 1010; backdrop-filter: blur(5px); }
-        .close-btn:hover { background: #ff2a5f; }
+        .close-btn { position: fixed; top: 15px; right: 20px; background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 28px; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; z-index: 1010; transition: 0.2s; }
+        .close-btn:hover { background: #ff2a5f; transform: rotate(90deg); }
 
-        /* COVER & AVATAR */
-        .cover-photo { width: 100%; height: 250px; object-fit: cover; filter: brightness(0.7); }
-        .profile-header-info { text-align: center; padding: 0 20px 20px; border-bottom: 1px solid #333; position: relative; }
-        .avatar { width: 130px; height: 130px; border-radius: 50%; border: 4px solid #121212; margin-top: -65px; object-fit: cover; position: relative; z-index: 2; }
+        /* PROFILE HEADER */
+        .cover-photo-wrapper { width: 100%; height: 200px; position: relative; }
+        .cover-photo { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+        .profile-header-info { text-align: center; padding: 0 20px 25px; border-bottom: 1px solid #222227; position: relative; }
+        .avatar-wrapper { width: 130px; height: 130px; margin: -65px auto 0; position: relative; z-index: 2; }
+        .avatar { width: 100%; height: 100%; border-radius: 50%; border: 4px solid #0f0f12; object-fit: cover; }
         
-        .modal-name { font-size: 26px; font-weight: bold; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 5px; }
-        .verified { color: #1da1f2; font-size: 18px; }
-        .bio { color: #aaa; font-size: 14px; margin: 10px 0; }
+        .modal-name { font-size: 24px; font-weight: 800; margin-top: 12px; color: #fff; display: flex; justify-content: center; align-items: center; gap: 5px; }
+        .verified { color: #1da1f2; font-size: 16px; }
+        .bio { color: #a1a1aa; font-size: 14px; margin: 8px 0 14px; padding: 0 15px; }
         
-        .action-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
-        .btn { padding: 10px 20px; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s; text-decoration: none; text-align: center; }
-        .btn-primary { background: #ff2a5f; color: white; flex: 1; }
-        .btn-secondary { background: #333; color: white; flex: 1; }
-        .btn:hover { opacity: 0.8; }
+        .action-btns { display: flex; justify-content: center; gap: 12px; margin-top: 15px; padding: 0 15px; }
+        .btn { padding: 12px 24px; border: none; border-radius: 25px; font-weight: 700; cursor: pointer; font-size: 14px; transition: all 0.2s; text-decoration: none; text-align: center; width: 100%; }
+        .btn-primary { background: #ff2a5f; color: white; box-shadow: 0 0 15px rgba(255, 42, 95, 0.5); animation: pulse-btn 2s infinite; }
+        .btn-secondary { background: #222227; color: white; border: 1px solid #33333f; }
+        .btn-primary:hover { background: #e01b4c; }
 
-        /* =========================================
-           FEED & POSTS
-           ========================================= */
-        .feed { padding: 15px; background: #000; }
+        /* FEED AREA */
+        .feed { padding: 20px 15px; }
         
-        /* LIVE BROADCAST POST */
-        .live-post { background: #1a1a1d; border-radius: 10px; overflow: hidden; margin-bottom: 20px; border: 1px solid #ff2a5f; box-shadow: 0 0 15px rgba(255, 42, 95, 0.2); }
-        .post-header { display: flex; align-items: center; padding: 12px; }
-        .post-header img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover; }
-        .post-author { font-weight: bold; font-size: 15px; display: block; }
-        .post-time { font-size: 12px; color: #888; }
-        .live-tag { background: red; color: white; padding: 2px 5px; border-radius: 4px; font-size: 11px; font-weight: bold; animation: blink 1s infinite; margin-left: auto; }
+        /* THE "BLURRED" LIVE POST TRICK */
+        .live-post { background: #131316; border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid #ff2a5f; box-shadow: 0 0 20px rgba(255, 42, 95, 0.2); position: relative; }
+        .post-header { display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #222227; }
+        .post-header img { width: 42px; height: 42px; border-radius: 50%; margin-right: 12px; object-fit: cover; }
+        .post-author { font-weight: 700; font-size: 15px; color: #fff; }
+        .post-time { font-size: 11px; color: #71717a; display: block; margin-top: 2px; }
+        .viewer-count { background: rgba(255,0,0,0.1); color: #ff2a5f; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-left: auto; border: 1px solid #ff2a5f; }
         
-        .video-player { position: relative; width: 100%; height: 350px; background: #000; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-        .video-player img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .play-btn { position: absolute; font-size: 50px; color: rgba(255,255,255,0.8); background: rgba(255, 42, 95, 0.6); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 2; box-shadow: 0 0 20px #ff2a5f; }
-        .join-live-text { position: absolute; bottom: 20px; background: #ff2a5f; padding: 10px 20px; border-radius: 20px; font-weight: bold; font-size: 16px; z-index: 2; }
+        .post-text { padding: 14px 15px; font-size: 14px; line-height: 1.5; color: #e4e4e7; font-weight: 500; }
+        .post-text span { color: #ff2a5f; font-weight: bold; }
+        
+        .video-player { position: relative; width: 100%; height: 350px; background: #000; display: flex; justify-content: center; align-items: center; cursor: pointer; text-decoration: none; overflow: hidden; }
+        .video-player img { width: 100%; height: 100%; object-fit: cover; filter: blur(12px) brightness(0.6); transform: scale(1.1); transition: 0.3s; }
+        .play-btn { position: absolute; font-size: 32px; color: #fff; background: rgba(255, 42, 95, 0.9); width: 75px; height: 75px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 2; box-shadow: 0 0 30px #ff2a5f; animation: pulse 1.5s infinite; }
+        .join-live-text { position: absolute; bottom: 20px; background: #ff2a5f; padding: 10px 25px; border-radius: 25px; font-weight: 800; font-size: 15px; z-index: 2; color: #fff; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .nsfw-warning { position: absolute; top: 15px; background: rgba(0,0,0,0.8); color: #ffca28; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; border: 1px solid #ffca28; z-index: 2; }
 
-        /* NORMAL POSTS */
-        .post { background: #1a1a1d; border-radius: 10px; margin-bottom: 15px; overflow: hidden; border: 1px solid #222; }
-        .post-text { padding: 0 12px 12px; font-size: 14px; line-height: 1.5; }
-        .post-image { width: 100%; max-height: 400px; object-fit: cover; cursor: pointer; }
-        .post-actions { display: flex; justify-content: space-between; padding: 10px 20px; border-top: 1px solid #222; }
-        .action-icon { color: #888; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        /* FAKE NOTIFICATION TOAST TRICK */
+        #fakeNotification { position: fixed; bottom: -100px; left: 20px; background: #131316; border-left: 4px solid #ff2a5f; padding: 15px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.8); display: flex; align-items: center; gap: 12px; z-index: 9999; transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; text-decoration: none; border-top: 1px solid #333; border-right: 1px solid #333; border-bottom: 1px solid #333; }
+        #fakeNotification img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .notif-text h4 { color: #fff; font-size: 14px; margin-bottom: 3px; }
+        .notif-text p { color: #a1a1aa; font-size: 12px; font-weight: bold; }
+        .notif-dot { width: 8px; height: 8px; background: #ff2a5f; border-radius: 50%; margin-left: 10px; animation: blink 1s infinite; }
+
+        /* REGULAR POSTS */
+        .post { background: #131316; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #222227; }
+        .post-image-link { display: block; width: 100%; max-height: 400px; overflow: hidden; }
+        .post-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .post-actions { display: flex; justify-content: space-between; padding: 15px 20px; border-top: 1px solid #222227; }
+        .action-icon { color: #a1a1aa; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 600; }
         .action-icon:hover { color: #ff2a5f; }
 
         /* ANIMATIONS */
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); } 100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); } }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 42, 95, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(255, 42, 95, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 42, 95, 0); } }
+        @keyframes pulse-btn { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .card-img-wrapper { height: 190px; }
+            #fakeNotification { left: 10px; right: 10px; bottom: -120px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🔥 Secret Hookups</h1>
-        <span>Local profiles online in your area</span>
+        <h1>🔥 Hemmelige Møder</h1>
+        <span>Lokale profiler online i dit område (Danmark)</span>
     </header>
 
     <div class="container">
-        <div class="grid" id="profileGrid">
-            </div>
+        <div class="grid" id="profileGrid"></div>
     </div>
+
+    <a href="https://t.taffizerq.com/719iel" target="_blank" rel="noopener noreferrer" id="fakeNotification">
+        <img src="" id="notifImg" alt="User">
+        <div class="notif-text">
+            <h4 id="notifName">Emma</h4>
+            <p>Sendte dig et privat billede 🔞</p>
+        </div>
+        <div class="notif-dot"></div>
+    </a>
 
     <div id="profileModal" class="modal">
         <button class="close-btn" onclick="closeModal()">×</button>
         <div class="modal-content">
             
-            <img src="" id="modalCover" class="cover-photo">
+            <div class="cover-photo-wrapper">
+                <img src="" id="modalCover" class="cover-photo">
+            </div>
             
             <div class="profile-header-info">
-                <img src="" id="modalAvatar" class="avatar">
+                <div class="avatar-wrapper">
+                    <img src="" id="modalAvatar" class="avatar">
+                </div>
                 <h2 class="modal-name"><span id="modalName">Name</span> <span class="verified">✔</span></h2>
-                <p class="bio">🔞 18+ Only | Content Creator 📸 | Let's chat privately 💋</p>
-                <div style="font-size: 13px; color: #aaa; margin-bottom: 10px;">📍 <span id="modalLocation"></span> • 🟢 Active Now</div>
+                <p class="bio">🔞 Kun 18+ | Indholdsskaber 📸 | Lad os chatte privat 💋</p>
+                <div style="font-size: 13px; color: #a1a1aa; margin-bottom: 12px; font-weight: bold;">
+                    📍 <span id="modalLocation"></span> • <span style="color: #2ecc71;">🟢 Aktiv Nu</span>
+                </div>
                 
                 <div class="action-btns">
-                    <a href="https://t.taffizerq.com/719iel" class="btn btn-primary">💬 Private Message</a>
-                    <a href="https://t.taffizerq.com/719iel" class="btn btn-secondary">🔓 Unlock VIP</a>
+                    <a href="https://t.taffizerq.com/719iel" target="_blank" rel="noopener noreferrer" class="btn btn-primary">💬 Start Privat Chat</a>
+                    <a href="https://t.taffizerq.com/719iel" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🔓 Lås op for VIP</a>
                 </div>
             </div>
 
-            <div class="feed" id="feedContainer">
-                </div>
+            <div class="feed" id="feedContainer"></div>
             
         </div>
     </div>
 
     <script>
-        // Database of your images
+        // Use the same images provided previously
         const allImages = [
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/C2CDnINUsAArk4M.jpg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/918ef2fd-89ae-4629-97c1-46aed0bcf444.webp?raw=true",
@@ -152,145 +172,146 @@
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faff59e27102.jpeg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafd6212320b.jpeg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafcae692d2c.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafc930da7d6.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafbe3fc1960.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafb9e5a7fc5.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafb12fc3117.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf934c26dee.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf445819aa1.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf17e56f793.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf12db448e5.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faeff2b47920.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faee27525158.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faece2309a62.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faead4ae3571.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fae8e424e078.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images4.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images%201.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/ZUQYQVFNR3-thumb.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/Z5CJD4WFFK.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/WZT9ONOAVQ.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/T4APYLQ1UD.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/QYVIU1LTLK-thumb.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/GsKNHUXXsAA_z4C.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/HE7LupIXEAA2xnS.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/EhU-uxVU4AEV_-n.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/Edtlj7HUcAERuPf.jpg?raw=true"
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafc930da7d6.jpeg?raw=true"
         ];
 
-        // USA & Denmark Names
-        const names = ["Emma", "Olivia", "Chloe", "Sophia", "Mia", "Freya", "Mathilde", "Clara", "Sarah", "Emily", "Madison", "Amelia", "Lily", "Grace"];
-        
-        // USA States & EU Locations for variety
-        const locations = ["New York, USA", "Los Angeles, CA", "Miami, FL", "Copenhagen, DK", "Aarhus, DK", "Texas, USA", "Chicago, IL", "Las Vegas, NV"];
-
+        // DANISH TRICKS: 100% Danish Names & Cities Only
+        const names = ["Emma", "Ida", "Clara", "Sofia", "Freja", "Josefine", "Alma", "Ella", "Anna", "Isabella"];
+        const locations = ["København, DK", "Aarhus, DK", "Odense, DK", "Aalborg, DK", "Esbjerg, DK", "Randers, DK", "Kolding, DK"];
         const cpaLink = "https://t.taffizerq.com/719iel";
 
-        const grid = document.getElementById('profileGrid');
-        allImages.forEach((imgUrl, index) => {
-            let randomName = names[Math.floor(Math.random() * names.length)] + ", " + (Math.floor(Math.random() * 8) + 19);
-            let randomLoc = locations[Math.floor(Math.random() * locations.length)] + " (" + (Math.random() * 5 + 0.5).toFixed(1) + " mi)";
+        // DANISH TRANSLATED CAPTIONS
+        const captions = [
+            "Vågnede lige... Hvem vil chatte privat? ☕😘",
+            "Føler mig lidt ensom i aften. Skal vi starte en privat stream? 🌙",
+            "Kan du lide mit outfit i dag? Hele sættet er på VIP 👗✨",
+            "Ny video er oppe på min private side! Tjek den ud. 🔞🔥",
+            "Tager et bad... kom ind på mit live cam nu! 🚿💧"
+        ];
+
+        const profilesDatabase = [];
+        const itemsPerProfile = 3;
+        const totalProfilesCount = Math.floor(allImages.length / itemsPerProfile);
+
+        for (let i = 0; i < totalProfilesCount; i++) {
+            let age = Math.floor(Math.random() * 6) + 19; // 19-24
+            let nameRandom = names[i % names.length] + ", " + age;
+            let locationRandom = locations[i % locations.length];
+            let distance = (Math.random() * 8 + 1).toFixed(1); // Fake distance
             
+            profilesDatabase.push({
+                id: i,
+                name: nameRandom,
+                location: locationRandom,
+                distance: distance,
+                avatar: allImages[i * itemsPerProfile],      
+                cover: allImages[i * itemsPerProfile + 1],  
+                postImage: allImages[i * itemsPerProfile + 2],
+                caption: captions[i % captions.length]
+            });
+        }
+
+        const grid = document.getElementById('profileGrid');
+        profilesDatabase.forEach((profile) => {
             grid.innerHTML += `
-                <div class="profile-card" onclick="openProfile('${randomName}', '${imgUrl}', '${randomLoc}')">
+                <div class="profile-card" onclick="openProfile(${profile.id})">
                     <div class="online-dot"></div>
                     <div class="live-badge-small">LIVE</div>
-                    <img src="${imgUrl}" class="card-img" alt="Profile">
+                    <div class="distance-badge">📍 ${profile.distance} km væk</div>
+                    <div class="card-img-wrapper">
+                        <img src="${profile.avatar}" class="card-img" alt="Profile">
+                    </div>
                     <div class="card-info">
-                        <div class="card-name">${randomName}</div>
-                        <div class="card-location">📍 ${randomLoc}</div>
+                        <div class="card-name">${profile.name}</div>
+                        <div class="card-location">${profile.location}</div>
                     </div>
                 </div>
             `;
         });
 
-        function openProfile(name, imgSrc, loc) {
+        function openProfile(id) {
+            const profile = profilesDatabase.find(p => p.id === id);
+            if(!profile) return;
+
             document.getElementById('profileModal').style.display = 'block';
-            document.getElementById('modalAvatar').src = imgSrc;
-            document.getElementById('modalCover').src = allImages[Math.floor(Math.random() * allImages.length)];
-            document.getElementById('modalName').innerText = name;
-            document.getElementById('modalLocation').innerText = loc;
+            document.getElementById('modalAvatar').src = profile.avatar;
+            document.getElementById('modalCover').src = profile.cover;
+            document.getElementById('modalName').innerText = profile.name;
+            document.getElementById('modalLocation').innerText = profile.location;
             document.body.style.overflow = 'hidden'; 
 
-            generatePosts(name, imgSrc);
+            generateModelFeed(profile);
+            
+            // Notification Trick Trigger
+            setTimeout(() => {
+                const notif = document.getElementById('fakeNotification');
+                document.getElementById('notifImg').src = profile.avatar;
+                document.getElementById('notifName').innerText = profile.name.split(',')[0];
+                notif.style.bottom = "20px";
+            }, 3000);
         }
 
         function closeModal() {
             document.getElementById('profileModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+            document.getElementById('fakeNotification').style.bottom = "-100px";
         }
 
-        function generatePosts(name, avatarUrl) {
+        function generateModelFeed(profile) {
             const feed = document.getElementById('feedContainer');
+            let viewers = Math.floor(Math.random() * 400) + 150; // Fake viewers
             feed.innerHTML = ''; 
 
-            // Live Broadcast section
+            // LIVE POST TRICK - BLURRED VIDEO
             feed.innerHTML += `
                 <div class="live-post">
                     <div class="post-header">
-                        <img src="${avatarUrl}" alt="author">
+                        <img src="${profile.avatar}" alt="author">
                         <div>
-                            <span class="post-author">${name}</span>
-                            <span class="post-time">Just now</span>
+                            <span class="post-author">${profile.name}</span>
+                            <span class="post-time">Lige nu</span>
                         </div>
-                        <span class="live-tag">LIVE NOW</span>
+                        <span class="viewer-count">👁️ ${viewers} kigger med</span>
                     </div>
-                    <div class="post-text">Hey babes! I'm live right now in my private room. Come join me before I close it... 😉💦</div>
-                    <a href="${cpaLink}" class="video-player">
-                        <img src="${avatarUrl}" alt="Live Preview">
+                    <div class="post-text">Hej skat! Jeg er live lige nu i mit private rum. <span>Kun 2 pladser tilbage</span> før jeg lukker det... 😉💦</div>
+                    <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="video-player">
+                        <span class="nsfw-warning">⚠️ ADVARSEL: 18+ INDHOLD</span>
+                        <img src="${profile.avatar}" alt="Live Preview">
                         <div class="play-btn">▶</div>
-                        <div class="join-live-text">Tap to Join Private Live</div>
+                        <div class="join-live-text">LÅS OP FOR VIDEO</div>
                     </a>
                     <div class="post-actions">
-                        <div class="action-icon">❤️ 1.2K Likes</div>
-                        <div class="action-icon">💬 340 Chat</div>
-                        <div class="action-icon">🎁 Send Gift</div>
+                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">❤️ 1.2K Synes godt om</a>
+                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">💬 340 Chat</a>
+                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">🎁 Send Gave</a>
                     </div>
                 </div>
             `;
 
-            const captions = [
-                "Just woke up... Who wants to chat? ☕😘",
-                "Feeling a bit lonely tonight. Any plans? 🌙",
-                "Do you like my outfit for today? 👗✨",
-                "New video is up on my VIP page! Check it out. 🔞🔥",
-                "Taking a shower... brb! 🚿💧",
-                "Bored at home. Someone entertain me! 🥺",
-                "Here is a little behind-the-scenes shot for you guys! 📸",
-                "Can't sleep... anyone awake? 🦉",
-                "Thinking about you... yes, YOU! ❤️",
-                "Workout done! Feeling energetic. 💪💦"
-            ];
+            // REGULAR POST
+            let likesCount = Math.floor(Math.random() * 500) + 250;
+            let commentsCount = Math.floor(Math.random() * 80) + 15;
 
-            for(let i = 1; i <= 20; i++) {
-                let randomCaption = captions[Math.floor(Math.random() * captions.length)];
-                let randomImg = allImages[Math.floor(Math.random() * allImages.length)];
-                let time = i + " hours ago";
-                let likes = Math.floor(Math.random() * 800) + 100;
-                let comments = Math.floor(Math.random() * 50) + 5;
-
-                let imageHtml = (i % 3 !== 0) ? `<a href="${cpaLink}"><img src="${randomImg}" class="post-image" alt="Post Img"></a>` : '';
-
-                feed.innerHTML += `
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="${avatarUrl}" alt="author">
-                            <div>
-                                <span class="post-author">${name}</span>
-                                <span class="post-time">${time}</span>
-                            </div>
-                        </div>
-                        <div class="post-text">${randomCaption}</div>
-                        ${imageHtml}
-                        <div class="post-actions">
-                            <div class="action-icon" onclick="window.location.href='${cpaLink}'">❤️ Like (${likes})</div>
-                            <div class="action-icon" onclick="window.location.href='${cpaLink}'">💬 Comment (${comments})</div>
-                            <div class="action-icon" onclick="window.location.href='${cpaLink}'">✉️ Message</div>
+            feed.innerHTML += `
+                <div class="post">
+                    <div class="post-header">
+                        <img src="${profile.avatar}" alt="author">
+                        <div>
+                            <span class="post-author">${profile.name}</span>
+                            <span class="post-time">3 timer siden</span>
                         </div>
                     </div>
-                `;
-            }
+                    <div class="post-text">${profile.caption}</div>
+                    <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="post-image-link">
+                        <img src="${profile.postImage}" class="post-image" alt="Post Img">
+                    </a>
+                    <div class="post-actions">
+                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">❤️ Synes godt om (${likesCount})</a>
+                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">💬 Kommenter (${commentsCount})</a>
+                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">✉️ Besked</a>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>
