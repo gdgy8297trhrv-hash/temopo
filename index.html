@@ -3,315 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>🔴 LIVE: Private Cams i Danmark</title>
+    <title>Facebook - Profiler</title>
     
     <style>
         /* =========================================
-           PREMIUM DARK THEME & TRICKS
+           FACEBOOK CLONE UI & CONTENT LOCKER
            ========================================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0b0b0d; color: #fff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #ff2a5f; border-radius: 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #f0f2f5; color: #1c1e21; overflow-x: hidden; }
         
-        /* HEADER */
-        header { background: #131316; padding: 18px 20px; text-align: center; border-bottom: 2px solid #ff2a5f; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(255, 42, 95, 0.15); }
-        header h1 { font-size: 22px; color: #ff2a5f; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
-        header span { font-size: 11px; color: #8a8a93; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; display: block; }
+        /* FB NAV BAR */
+        .fb-nav { background: #ffffff; height: 56px; display: flex; align-items: center; padding: 0 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .fb-logo { font-size: 24px; font-weight: bold; color: #1877f2; text-decoration: none; letter-spacing: -1px; }
+        .nav-search { background: #f0f2f5; border-radius: 50px; padding: 8px 15px; margin-left: 10px; color: #65676b; font-size: 14px; width: 100%; max-width: 250px; }
 
-        /* MAIN GRID */
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; }
+        /* HOMEPAGE GRID (SUGGESTED FRIENDS) */
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .section-title { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #050505; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
         
-        .profile-card { background: #131316; border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.3s; position: relative; border: 1px solid #222227; }
-        .profile-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(255, 42, 95, 0.3); border-color: #ff2a5f; }
-        .card-img-wrapper { width: 100%; height: 230px; overflow: hidden; position: relative; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .profile-card:hover .card-img { transform: scale(1.05); }
-        
-        .online-dot { position: absolute; top: 12px; left: 12px; background: #2ecc71; width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 12px #2ecc71; animation: pulse 1.5s infinite; z-index: 5; }
-        .live-badge-small { position: absolute; top: 12px; right: 12px; background: #ff2a5f; color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 20px; animation: blink 1s infinite; z-index: 5; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(255, 42, 95, 0.5); }
-        .distance-badge { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: #fff; font-size: 10px; padding: 3px 6px; border-radius: 5px; backdrop-filter: blur(3px); z-index: 5; border: 1px solid #333; }
-        
-        .card-info { padding: 12px; background: #131316; text-align: center; }
-        .card-name { font-size: 16px; font-weight: 700; color: #ffffff; }
-        .card-location { font-size: 12px; color: #a1a1aa; margin-top: 4px; }
+        .user-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.2); cursor: pointer; border: 1px solid #ddd; }
+        .user-card img { width: 100%; height: 140px; object-fit: cover; }
+        .user-card-info { padding: 10px; text-align: center; }
+        .user-card-name { font-weight: 600; font-size: 14px; color: #050505; }
+        .user-card-btn { background: #e7f3ff; color: #1877f2; border: none; padding: 6px; width: 100%; border-radius: 6px; margin-top: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
 
-        /* MODAL SYSTEM */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 6, 0.96); z-index: 1000; overflow-y: auto; backdrop-filter: blur(8px); }
-        .modal-content { background: #0f0f12; max-width: 550px; margin: 0 auto; min-height: 100vh; position: relative; border-left: 1px solid #222227; border-right: 1px solid #222227; padding-bottom: 40px; }
+        /* FULLSCREEN PROFILE MODAL */
+        .profile-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f0f2f5; z-index: 1000; overflow-y: auto; }
+        .back-btn { position: fixed; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: #fff; border: none; padding: 8px 15px; border-radius: 20px; z-index: 1010; font-weight: bold; cursor: pointer; backdrop-filter: blur(5px); }
         
-        .close-btn { position: fixed; top: 15px; right: 20px; background: rgba(255, 255, 255, 0.1); border: none; color: white; font-size: 28px; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; z-index: 1010; transition: 0.2s; }
-        .close-btn:hover { background: #ff2a5f; transform: rotate(90deg); }
-
         /* PROFILE HEADER */
-        .cover-photo-wrapper { width: 100%; height: 200px; position: relative; }
-        .cover-photo { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
-        .profile-header-info { text-align: center; padding: 0 20px 25px; border-bottom: 1px solid #222227; position: relative; }
-        .avatar-wrapper { width: 130px; height: 130px; margin: -65px auto 0; position: relative; z-index: 2; }
-        .avatar { width: 100%; height: 100%; border-radius: 50%; border: 4px solid #0f0f12; object-fit: cover; }
+        .profile-top { background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,0.1); padding-bottom: 15px; }
+        .cover-photo { width: 100%; height: 200px; background: #cbd2d9 url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop') center/cover; position: relative; }
+        .profile-avatar-wrapper { width: 140px; height: 140px; border-radius: 50%; border: 4px solid #fff; margin: -70px auto 0; position: relative; z-index: 2; background: #fff; }
+        .profile-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .profile-name { text-align: center; font-size: 24px; font-weight: 700; margin-top: 10px; color: #050505; }
+        .profile-bio { text-align: center; color: #65676b; font-size: 14px; margin: 5px 20px; }
         
-        .modal-name { font-size: 24px; font-weight: 800; margin-top: 12px; color: #fff; display: flex; justify-content: center; align-items: center; gap: 5px; }
-        .verified { color: #1da1f2; font-size: 16px; }
-        .bio { color: #a1a1aa; font-size: 14px; margin: 8px 0 14px; padding: 0 15px; }
+        .fb-action-btns { display: flex; gap: 10px; justify-content: center; margin-top: 15px; padding: 0 20px; }
+        .fb-btn { padding: 8px 0; border: none; border-radius: 6px; font-weight: 600; font-size: 15px; cursor: pointer; flex: 1; text-align: center; text-decoration: none; }
+        .btn-add { background: #1877f2; color: #fff; }
+        .btn-msg { background: #e4e6eb; color: #050505; }
+
+        /* POST TIMELINE */
+        .timeline { max-width: 600px; margin: 15px auto; padding: 0 10px; }
+        .post { background: #fff; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 1px 2px rgba(0,0,0,0.2); overflow: hidden; }
+        .post-header { display: flex; align-items: center; padding: 12px; }
+        .post-header img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover; }
+        .post-author { font-weight: 600; font-size: 15px; color: #050505; display: block; }
+        .post-time { font-size: 12px; color: #65676b; display: flex; align-items: center; gap: 4px; }
+        .post-text { padding: 0 12px 10px; font-size: 15px; color: #050505; line-height: 1.4; }
         
-        .action-btns { display: flex; justify-content: center; gap: 12px; margin-top: 15px; padding: 0 15px; }
-        .btn { padding: 12px 24px; border: none; border-radius: 25px; font-weight: 700; cursor: pointer; font-size: 14px; transition: all 0.2s; text-decoration: none; text-align: center; width: 100%; }
-        .btn-primary { background: #ff2a5f; color: white; box-shadow: 0 0 15px rgba(255, 42, 95, 0.5); animation: pulse-btn 2s infinite; }
-        .btn-secondary { background: #222227; color: white; border: 1px solid #33333f; }
-        .btn-primary:hover { background: #e01b4c; }
-
-        /* FEED AREA */
-        .feed { padding: 20px 15px; }
+        /* THE LOCKER TRICK */
+        .locked-content { position: relative; width: 100%; height: 350px; background: #000; display: flex; justify-content: center; align-items: center; cursor: pointer; text-decoration: none; overflow: hidden; }
+        .locked-content img { width: 100%; height: 100%; object-fit: cover; filter: blur(25px) brightness(0.7); transform: scale(1.1); }
+        .lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2; padding: 20px; text-align: center; }
+        .lock-icon { font-size: 50px; margin-bottom: 10px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+        .lock-title { color: #fff; font-size: 18px; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
+        .lock-desc { color: #ddd; font-size: 13px; margin-bottom: 15px; max-width: 80%; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+        .unlock-btn { background: #ff2a5f; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 10px rgba(255, 42, 95, 0.4); border: 1px solid #ff2a5f; }
         
-        /* THE "BLURRED" LIVE POST TRICK */
-        .live-post { background: #131316; border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid #ff2a5f; box-shadow: 0 0 20px rgba(255, 42, 95, 0.2); position: relative; }
-        .post-header { display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #222227; }
-        .post-header img { width: 42px; height: 42px; border-radius: 50%; margin-right: 12px; object-fit: cover; }
-        .post-author { font-weight: 700; font-size: 15px; color: #fff; }
-        .post-time { font-size: 11px; color: #71717a; display: block; margin-top: 2px; }
-        .viewer-count { background: rgba(255,0,0,0.1); color: #ff2a5f; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-left: auto; border: 1px solid #ff2a5f; }
+        .post-stats { padding: 10px 12px; border-bottom: 1px solid #ced0d4; font-size: 13px; color: #65676b; display: flex; justify-content: space-between; }
+        .post-actions { display: flex; justify-content: space-between; padding: 4px 12px; }
+        .action-btn { flex: 1; text-align: center; padding: 8px 0; color: #65676b; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 6px; text-decoration: none; }
         
-        .post-text { padding: 14px 15px; font-size: 14px; line-height: 1.5; color: #e4e4e7; font-weight: 500; }
-        .post-text span { color: #ff2a5f; font-weight: bold; }
-        
-        .video-player { position: relative; width: 100%; height: 350px; background: #000; display: flex; justify-content: center; align-items: center; cursor: pointer; text-decoration: none; overflow: hidden; }
-        .video-player img { width: 100%; height: 100%; object-fit: cover; filter: blur(12px) brightness(0.6); transform: scale(1.1); transition: 0.3s; }
-        .play-btn { position: absolute; font-size: 32px; color: #fff; background: rgba(255, 42, 95, 0.9); width: 75px; height: 75px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 2; box-shadow: 0 0 30px #ff2a5f; animation: pulse 1.5s infinite; }
-        .join-live-text { position: absolute; bottom: 20px; background: #ff2a5f; padding: 10px 25px; border-radius: 25px; font-weight: 800; font-size: 15px; z-index: 2; color: #fff; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .nsfw-warning { position: absolute; top: 15px; background: rgba(0,0,0,0.8); color: #ffca28; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; border: 1px solid #ffca28; z-index: 2; }
-
-        /* FAKE NOTIFICATION TOAST TRICK */
-        #fakeNotification { position: fixed; bottom: -100px; left: 20px; background: #131316; border-left: 4px solid #ff2a5f; padding: 15px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.8); display: flex; align-items: center; gap: 12px; z-index: 9999; transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; text-decoration: none; border-top: 1px solid #333; border-right: 1px solid #333; border-bottom: 1px solid #333; }
-        #fakeNotification img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-        .notif-text h4 { color: #fff; font-size: 14px; margin-bottom: 3px; }
-        .notif-text p { color: #a1a1aa; font-size: 12px; font-weight: bold; }
-        .notif-dot { width: 8px; height: 8px; background: #ff2a5f; border-radius: 50%; margin-left: 10px; animation: blink 1s infinite; }
-
-        /* REGULAR POSTS */
-        .post { background: #131316; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #222227; }
-        .post-image-link { display: block; width: 100%; max-height: 400px; overflow: hidden; }
-        .post-image { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .post-actions { display: flex; justify-content: space-between; padding: 15px 20px; border-top: 1px solid #222227; }
-        .action-icon { color: #a1a1aa; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 600; }
-        .action-icon:hover { color: #ff2a5f; }
-
-        /* ANIMATIONS */
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 42, 95, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(255, 42, 95, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 42, 95, 0); } }
-        @keyframes pulse-btn { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
         @media (max-width: 480px) {
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .card-img-wrapper { height: 190px; }
-            #fakeNotification { left: 10px; right: 10px; bottom: -120px; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .cover-photo { height: 150px; }
+            .locked-content { height: 280px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>🔥 Hemmelige Møder</h1>
-        <span>Lokale profiler online i dit område (Danmark)</span>
-    </header>
-
-    <div class="container">
-        <div class="grid" id="profileGrid"></div>
+    <div class="fb-nav">
+        <a href="#" class="fb-logo">facebook</a>
+        <div class="nav-search">🔍 Søg efter venner...</div>
     </div>
 
-    <a href="https://t.taffizerq.com/719iel" target="_blank" rel="noopener noreferrer" id="fakeNotification">
-        <img src="" id="notifImg" alt="User">
-        <div class="notif-text">
-            <h4 id="notifName">Emma</h4>
-            <p>Sendte dig et privat billede 🔞</p>
+    <div class="container">
+        <div class="section-title">Personer, du måske kender</div>
+        <div class="grid" id="homepageGrid"></div>
+    </div>
+
+    <!-- PROFILE MODAL -->
+    <div id="profileModal" class="profile-modal">
+        <button class="back-btn" onclick="closeProfile()">⬅ Tilbage</button>
+        
+        <div class="profile-top">
+            <div class="cover-photo"></div>
+            <div class="profile-avatar-wrapper">
+                <img src="" id="pAvatar" class="profile-avatar">
+            </div>
+            <h1 class="profile-name"><span id="pName">Name</span></h1>
+            <p class="profile-bio">📍 Bor i Danmark • 🎓 Studerer • 💌 Kun for sjov</p>
+            
+            <div class="fb-action-btns">
+                <a href="https://t.taffizerq.com/719iel" target="_blank" class="fb-btn btn-add">🔒 Lås Profil Op</a>
+                <a href="https://t.taffizerq.com/719iel" target="_blank" class="fb-btn btn-msg">Besked</a>
+            </div>
         </div>
-        <div class="notif-dot"></div>
-    </a>
 
-    <div id="profileModal" class="modal">
-        <button class="close-btn" onclick="closeModal()">×</button>
-        <div class="modal-content">
-            
-            <div class="cover-photo-wrapper">
-                <img src="" id="modalCover" class="cover-photo">
-            </div>
-            
-            <div class="profile-header-info">
-                <div class="avatar-wrapper">
-                    <img src="" id="modalAvatar" class="avatar">
-                </div>
-                <h2 class="modal-name"><span id="modalName">Name</span> <span class="verified">✔</span></h2>
-                <p class="bio">🔞 Kun 18+ | Indholdsskaber 📸 | Lad os chatte privat 💋</p>
-                <div style="font-size: 13px; color: #a1a1aa; margin-bottom: 12px; font-weight: bold;">
-                    📍 <span id="modalLocation"></span> • <span style="color: #2ecc71;">🟢 Aktiv Nu</span>
-                </div>
-                
-                <div class="action-btns">
-                    <a href="https://t.taffizerq.com/719iel" target="_blank" rel="noopener noreferrer" class="btn btn-primary">💬 Start Privat Chat</a>
-                    <a href="https://t.taffizerq.com/719iel" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🔓 Lås op for VIP</a>
-                </div>
-            </div>
-
-            <div class="feed" id="feedContainer"></div>
-            
+        <div class="timeline" id="timelineContainer">
+            <!-- 30 Posts will be generated here -->
         </div>
     </div>
 
     <script>
-        // Use the same images provided previously
+        // ALL 36 IMAGES PROVIDED BY YOU
         const allImages = [
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/C2CDnINUsAArk4M.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/918ef2fd-89ae-4629-97c1-46aed0bcf444.webp?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/8cd9b917-2a23-4f57-84a3-bf06bc59ff04.webp?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/22.jpg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/15.jpg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/zUhgoTkN_400x400.jpg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/post94873717708903160IMG_2631.jpeg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/photo_2026-02-01_19-40-54.jpg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faff59e27102.jpeg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafd6212320b.jpeg?raw=true",
             "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafcae692d2c.jpeg?raw=true",
-            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafc930da7d6.jpeg?raw=true"
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafc930da7d6.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafbe3fc1960.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafb9e5a7fc5.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fafb12fc3117.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf934c26dee.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf445819aa1.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf376edf756.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf17e56f793.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faf12db448e5.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faeff2b47920.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faee27525158.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faece2309a62.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5faead4ae3571.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images_5fae8e424e078.jpeg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images4.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/images%201.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/ZUQYQVFNR3-thumb.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/Z5CJD4WFFK.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/WZT9ONOAVQ.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/T4APYLQ1UD.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/QYVIU1LTLK-thumb.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/GsKNHUXXsAA_z4C.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/HE7LupIXEAA2xnS.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/EhU-uxVU4AEV_-n.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/Edtlj7HUcAERuPf.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/C2CDnINUsAArk4M.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/918ef2fd-89ae-4629-97c1-46aed0bcf444.webp?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/8cd9b917-2a23-4f57-84a3-bf06bc59ff04.webp?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/22.jpg?raw=true",
+            "https://github.com/gdjg536ydiv-bot/affizerp/blob/main/15.jpg?raw=true"
         ];
 
-        // DANISH TRICKS: 100% Danish Names & Cities Only
-        const names = ["Emma", "Ida", "Clara", "Sofia", "Freja", "Josefine", "Alma", "Ella", "Anna", "Isabella"];
-        const locations = ["København, DK", "Aarhus, DK", "Odense, DK", "Aalborg, DK", "Esbjerg, DK", "Randers, DK", "Kolding, DK"];
+        // Danish Female Names
+        const danishNames = ["Emma Nielsen", "Ida Jensen", "Clara Hansen", "Sofia Pedersen", "Freja Andersen", "Josefine Christensen", "Alma Larsen", "Ella Sørensen", "Anna Rasmussen", "Isabella Jørgensen", "Laura Petersen", "Mathilde Madsen"];
         const cpaLink = "https://t.taffizerq.com/719iel";
 
-        // DANISH TRANSLATED CAPTIONS
-        const captions = [
-            "Vågnede lige... Hvem vil chatte privat? ☕😘",
-            "Føler mig lidt ensom i aften. Skal vi starte en privat stream? 🌙",
-            "Kan du lide mit outfit i dag? Hele sættet er på VIP 👗✨",
-            "Ny video er oppe på min private side! Tjek den ud. 🔞🔥",
-            "Tager et bad... kom ind på mit live cam nu! 🚿💧"
+        // Daily life captions in Danish
+        const dailyCaptions = [
+            "Slapper af derhjemme i dag... 🛋️ Har I en god weekend?",
+            "Lige kommet ud af badet 🚿 Se min nye video nedenfor...",
+            "Klar til i aften 🍷 Hvem vil holde mig med selskab?",
+            "Savner nogen at putte med... ❤️ Skriv til mig privat.",
+            "Min nye bikini kom i dag! 👙 Hvad synes I om farven?",
+            "Ups, slettede næsten denne video 🙈 Heldigvis gemte jeg den til jer.",
+            "Godmorgen skat 💋 Tjek min seneste opdatering.",
+            "Træning overstået! 💦 Føler mig fantastisk.",
+            "Keder mig lidt i aften... 🥺",
+            "Tilføjede lige noget helt specielt til VIP galleriet 🔥"
         ];
 
-        const profilesDatabase = [];
-        const itemsPerProfile = 3;
-        const totalProfilesCount = Math.floor(allImages.length / itemsPerProfile);
-
-        for (let i = 0; i < totalProfilesCount; i++) {
-            let age = Math.floor(Math.random() * 6) + 19; // 19-24
-            let nameRandom = names[i % names.length] + ", " + age;
-            let locationRandom = locations[i % locations.length];
-            let distance = (Math.random() * 8 + 1).toFixed(1); // Fake distance
-            
-            profilesDatabase.push({
-                id: i,
-                name: nameRandom,
-                location: locationRandom,
-                distance: distance,
-                avatar: allImages[i * itemsPerProfile],      
-                cover: allImages[i * itemsPerProfile + 1],  
-                postImage: allImages[i * itemsPerProfile + 2],
-                caption: captions[i % captions.length]
-            });
-        }
-
-        const grid = document.getElementById('profileGrid');
-        profilesDatabase.forEach((profile) => {
+        // 1. Generate 36 Profiles on the Homepage
+        const grid = document.getElementById('homepageGrid');
+        
+        allImages.forEach((imgUrl, index) => {
+            let randomName = danishNames[index % danishNames.length];
+            // Render card
             grid.innerHTML += `
-                <div class="profile-card" onclick="openProfile(${profile.id})">
-                    <div class="online-dot"></div>
-                    <div class="live-badge-small">LIVE</div>
-                    <div class="distance-badge">📍 ${profile.distance} km væk</div>
-                    <div class="card-img-wrapper">
-                        <img src="${profile.avatar}" class="card-img" alt="Profile">
-                    </div>
-                    <div class="card-info">
-                        <div class="card-name">${profile.name}</div>
-                        <div class="card-location">${profile.location}</div>
+                <div class="user-card" onclick="openProfile('${imgUrl}', '${randomName}')">
+                    <img src="${imgUrl}" alt="Profile Image">
+                    <div class="user-card-info">
+                        <div class="user-card-name">${randomName}</div>
+                        <button class="user-card-btn">Tilføj ven</button>
                     </div>
                 </div>
             `;
         });
 
-        function openProfile(id) {
-            const profile = profilesDatabase.find(p => p.id === id);
-            if(!profile) return;
-
+        // 2. Open Profile and Generate 30 Posts
+        function openProfile(imgUrl, name) {
             document.getElementById('profileModal').style.display = 'block';
-            document.getElementById('modalAvatar').src = profile.avatar;
-            document.getElementById('modalCover').src = profile.cover;
-            document.getElementById('modalName').innerText = profile.name;
-            document.getElementById('modalLocation').innerText = profile.location;
-            document.body.style.overflow = 'hidden'; 
-
-            generateModelFeed(profile);
+            document.body.style.overflow = 'hidden'; // Lock background scrolling
             
-            // Notification Trick Trigger
-            setTimeout(() => {
-                const notif = document.getElementById('fakeNotification');
-                document.getElementById('notifImg').src = profile.avatar;
-                document.getElementById('notifName').innerText = profile.name.split(',')[0];
-                notif.style.bottom = "20px";
-            }, 3000);
+            // Set Headers
+            document.getElementById('pAvatar').src = imgUrl;
+            document.getElementById('pName').innerText = name;
+            
+            // Generate Timeline (30 posts)
+            const timeline = document.getElementById('timelineContainer');
+            timeline.innerHTML = ''; // Clear previous
+
+            for (let i = 0; i < 30; i++) {
+                let caption = dailyCaptions[Math.floor(Math.random() * dailyCaptions.length)];
+                let likes = Math.floor(Math.random() * 800) + 50;
+                let comments = Math.floor(Math.random() * 100) + 5;
+                let hoursAgo = i === 0 ? "Lige nu" : `${i * 2} timer siden`;
+
+                timeline.innerHTML += `
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="${imgUrl}" alt="Avatar">
+                            <div>
+                                <span class="post-author">${name}</span>
+                                <span class="post-time">${hoursAgo} • 🌎</span>
+                            </div>
+                        </div>
+                        <div class="post-text">${caption}</div>
+                        
+                        <!-- THE AGGRESSIVE CONTENT LOCKER -->
+                        <a href="${cpaLink}" target="_blank" class="locked-content">
+                            <img src="${imgUrl}" alt="Blurred Content">
+                            <div class="lock-overlay">
+                                <div class="lock-icon">🔒</div>
+                                <div class="lock-title">18+ Sensitivt Indhold Låst</div>
+                                <div class="lock-desc">Dette medie kan indeholde voksenindhold. Bekræft din alder for at se det ucenstreret.</div>
+                                <div class="unlock-btn">🔓 Bekræft Alder (18+)</div>
+                            </div>
+                        </a>
+                        
+                        <div class="post-stats">
+                            <span>👍❤️ ${likes}</span>
+                            <span>${comments} kommentarer</span>
+                        </div>
+                        <div class="post-actions">
+                            <a href="${cpaLink}" target="_blank" class="action-btn">👍 Synes godt om</a>
+                            <a href="${cpaLink}" target="_blank" class="action-btn">💬 Kommenter</a>
+                            <a href="${cpaLink}" target="_blank" class="action-btn">↪ Del</a>
+                        </div>
+                    </div>
+                `;
+            }
         }
 
-        function closeModal() {
+        // Close Profile
+        function closeProfile() {
             document.getElementById('profileModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            document.getElementById('fakeNotification').style.bottom = "-100px";
-        }
-
-        function generateModelFeed(profile) {
-            const feed = document.getElementById('feedContainer');
-            let viewers = Math.floor(Math.random() * 400) + 150; // Fake viewers
-            feed.innerHTML = ''; 
-
-            // LIVE POST TRICK - BLURRED VIDEO
-            feed.innerHTML += `
-                <div class="live-post">
-                    <div class="post-header">
-                        <img src="${profile.avatar}" alt="author">
-                        <div>
-                            <span class="post-author">${profile.name}</span>
-                            <span class="post-time">Lige nu</span>
-                        </div>
-                        <span class="viewer-count">👁️ ${viewers} kigger med</span>
-                    </div>
-                    <div class="post-text">Hej skat! Jeg er live lige nu i mit private rum. <span>Kun 2 pladser tilbage</span> før jeg lukker det... 😉💦</div>
-                    <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="video-player">
-                        <span class="nsfw-warning">⚠️ ADVARSEL: 18+ INDHOLD</span>
-                        <img src="${profile.avatar}" alt="Live Preview">
-                        <div class="play-btn">▶</div>
-                        <div class="join-live-text">LÅS OP FOR VIDEO</div>
-                    </a>
-                    <div class="post-actions">
-                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">❤️ 1.2K Synes godt om</a>
-                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">💬 340 Chat</a>
-                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">🎁 Send Gave</a>
-                    </div>
-                </div>
-            `;
-
-            // REGULAR POST
-            let likesCount = Math.floor(Math.random() * 500) + 250;
-            let commentsCount = Math.floor(Math.random() * 80) + 15;
-
-            feed.innerHTML += `
-                <div class="post">
-                    <div class="post-header">
-                        <img src="${profile.avatar}" alt="author">
-                        <div>
-                            <span class="post-author">${profile.name}</span>
-                            <span class="post-time">3 timer siden</span>
-                        </div>
-                    </div>
-                    <div class="post-text">${profile.caption}</div>
-                    <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="post-image-link">
-                        <img src="${profile.postImage}" class="post-image" alt="Post Img">
-                    </a>
-                    <div class="post-actions">
-                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">❤️ Synes godt om (${likesCount})</a>
-                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">💬 Kommenter (${commentsCount})</a>
-                        <a href="${cpaLink}" target="_blank" rel="noopener noreferrer" class="action-icon">✉️ Besked</a>
-                    </div>
-                </div>
-            `;
+            document.body.style.overflow = 'auto'; // Unlock scrolling
         }
     </script>
 </body>
